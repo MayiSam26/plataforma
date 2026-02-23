@@ -1,0 +1,69 @@
+interface data{
+    id:number,
+    mascota:string,
+    urlimg:string
+    contacto:any[]
+}
+
+export const dataPerdidos : data[] = [
+    {
+        id:1,
+        mascota:'Rambo',
+        urlimg:'/img/perdido1.png',
+        contacto:[
+            {
+                id:1,
+                url:''
+            },
+            {
+                id:2,
+                url:''
+            }
+        ]
+    },
+    {
+        id:2,
+        mascota:'El nacho',
+        urlimg:'/img/perdido3.png',
+        contacto:[
+            {
+                id:1,
+                url:''
+            },
+            {
+                id:2,
+                url:''
+            }
+        ]
+    },
+    {
+        id:3,
+        mascota:'Pepe',
+        urlimg:'/img/perdido4.png',
+        contacto:[
+            {
+                id:1,
+                url:''
+            },
+            {
+                id:2,
+                url:''
+            }
+        ]
+    },
+    {
+        id:4,
+        mascota:'Pana Rabbit',
+        urlimg:'/img/perdido2.png',
+        contacto:[
+            {
+                id:1,
+                url:''
+            },
+            {
+                id:2,
+                url:''
+            }
+        ]
+    }
+]
