@@ -25,18 +25,14 @@ export default function Plan({ plan }: props) {
         const { content } = item;
 
         const contentParse =
-          urlBase.pathBase == "https://dreambox.digital"
+          urlBase.pathBase == "https://bakendultimo-production.up.railway.app"
             ? JSON.parse(content)
             : content;
         return (
           <div className="col-lg-4 mb-4" key={item.idplanmensual}>
             <div className="card border-0">
               <div className="card-header position-relative border-0 p-0 mb-4">
-                <img
-  className="card-img-top"
-  src={`${urlBase.pathBase}${encodeURI(item.img.replaceAll("\\", "/"))}`}
-  alt=""
-/>
+                <img className="card-img-top" src={"/img/" + item.img} alt="" />
                 <div
                   className="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100"
                   style={{
