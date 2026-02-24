@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   const getPerdidoRecientes = () => {
-    const url = urlBase.pathBase + "/colitas/list";
+    const url = urlBase.pathBase + "colitas/list";
     axios
       .post(url, {
         estado: "En refugio","limite": 4
@@ -194,7 +194,7 @@ export default function Home() {
         </div>
         <div style={{ display: "flex", justifyContent: "start" }}>
           <Button
-            onClick={() => navigate("mascotas-perdidas")}
+            onClick={() => navigate("colitas")}
             sx={{
               background: "#ED6436",
               py: 1,
