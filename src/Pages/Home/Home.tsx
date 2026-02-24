@@ -194,7 +194,7 @@ export default function Home() {
         </div>
         <div style={{ display: "flex", justifyContent: "start" }}>
           <Button
-            onClick={() => navigate("colitas")}
+            onClick={() => navigate("mascotas-perdidas")}
             sx={{
               background: "#ED6436",
               py: 1,
