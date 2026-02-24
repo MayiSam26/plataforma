@@ -39,7 +39,7 @@ export const dataPerdidos : data[] = [
     {
         id:3,
         mascota:'Pepe',
-        urlimg:'/img/perdido4.png',
+        urlimg:'/uploads/perrodal.jpg',
         contacto:[
             {
                 id:1,
