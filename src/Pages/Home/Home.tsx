@@ -24,7 +24,8 @@ export default function Home() {
     AOS.init({});
   }, []);
   const getPlan = async () => {
-    const url = urlBase.pathBase + "/plan-mensual/list";
+    //const url = urlBase.pathBase + "/plan-mensual/list";
+    const url = urlBase.pathBase + "plan-mensual/list";
     axios
       .get(url)
       .then((response) => {
@@ -35,7 +36,7 @@ export default function Home() {
   };
 
   const getPerdidoRecientes = () => {
-    const url = urlBase.pathBase + "/colitas/list";
+    const url = urlBase.pathBase + "colitas/list";
     axios
       .post(url, {
         estado: "En refugio","limite": 4

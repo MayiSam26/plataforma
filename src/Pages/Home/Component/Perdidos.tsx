@@ -20,7 +20,7 @@ export default function Perdidos({ perdidosRecientes }: props) {
     setOpenModa(true);
   };
   const getByIdPerdidos = async () => {
-    const url = urlBase.pathBase + "/colitas/detail/" + idDetil;
+    const url = urlBase.pathBase + "colitas/detail/" + idDetil;
     axios
       .get(url)
       .then((response) => {
