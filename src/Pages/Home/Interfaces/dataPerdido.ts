@@ -54,7 +54,7 @@ export const dataPerdidos : data[] = [
     {
         id:4,
         mascota:'Pana Rabbit',
-        urlimg:'/img/perdido2.png',
+        urlimg:'/uploads/perdido2.png',
         contacto:[
             {
                 id:1,
