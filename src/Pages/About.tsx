@@ -28,7 +28,9 @@ export default function About() {
   };
 
   const getPerdidoRecientes = () => {
-    const url = urlBase.pathBase + "/colitas/list";
+    const url = urlBase.pathBase + "colitas/list";  
+    //const url = urlBase + "colitas/list";  
+  
     axios
       .post(url, {
         estado: "En refugio",
