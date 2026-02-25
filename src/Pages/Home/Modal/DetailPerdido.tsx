@@ -12,6 +12,17 @@ import moment from "moment";
 import urlBase from "../../../config/index";
 
 export default function CardDetalleAnimal({ colitasDetalle, setOpenModa }: any) {
+  // ✅ Construye la URL sin doble //, soporta espacios y backslashes
+  const buildImgUrl = (base: string, foto: string) => {
+    const cleanBase = base.replace(/\/+$/, ""); // quita / al final
+    const cleanFoto = (foto || "")
+      .replace(/^\/+/, "") // quita / al inicio
+      .replace(/\\/g, "/"); // cambia \ por /
+    return `${cleanBase}/${encodeURI(cleanFoto)}`; // encode por espacios
+  };
+
+  const imageUrl = buildImgUrl(urlBase.pathBase, colitasDetalle?.foto);
+
   return (
     <Card sx={{ maxWidth: 700, mx: "auto", boxShadow: 4, borderRadius: 3 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}>
@@ -24,18 +35,17 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa }: any) 
       </Box>
 
       <CardMedia
-  component="img"
-  image={urlBase.pathBase + "/" + colitasDetalle?.foto}
-  alt={colitasDetalle?.nombre}
-  sx={{
-    height: 280, // puedes ajustar este valor según tu diseño
-    width: '100%',
-    objectFit: 'contain', // para que se vea completa
-    borderRadius: 0, // bordes rectos
-    backgroundColor: '#f9f9f9' // opcional para evitar fondo negro
-  }}
-/>
-
+        component="img"
+        image={imageUrl}
+        alt={colitasDetalle?.nombre}
+        sx={{
+          height: 280,
+          width: "100%",
+          objectFit: "contain",
+          borderRadius: 0,
+          backgroundColor: "#f9f9f9",
+        }}
+      />
 
       <CardContent sx={{ px: 4 }}>
         <Box display="flex" justifyContent="space-between" py={1}>
@@ -43,7 +53,7 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa }: any) 
             Tamaño: {colitasDetalle?.tamano}
           </Typography>
           <Typography fontWeight={700} color="#65C178" textTransform="capitalize">
-            Género: {colitasDetalle?.idgenero==1?"Macho":"Hembra"}
+            Género: {colitasDetalle?.idgenero == 1 ? "Macho" : "Hembra"}
           </Typography>
         </Box>
 
@@ -58,16 +68,12 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa }: any) 
 
         <Typography sx={{ mb: 1 }}>
           <strong>Observaciones:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>
-            {colitasDetalle?.observaciones}
-          </span>
+          <span style={{ fontWeight: 400 }}>{colitasDetalle?.observaciones}</span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>
           <strong>Esterilización:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>
-            {colitasDetalle?.esterelizacion}
-          </span>
+          <span style={{ fontWeight: 400 }}>{colitasDetalle?.esterelizacion}</span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>
