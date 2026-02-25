@@ -19,7 +19,7 @@ export const routes : navigate[] = [
     },
     {
         to:'about',
-        path:'/mascotas-perdidas',
+        path:'/colitas-por-adoptar',
         Component:About,
         name:'Home'
     }
