@@ -6,20 +6,54 @@ import {
   CardMedia,
   Divider,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import moment from "moment";
 import urlBase from "../../../config/index";
 
-export default function CardDetalleAnimal({ colitasDetalle, setOpenModa }: any) {
+export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading }: any) {
   // ✅ Construye la URL sin doble //, soporta espacios y backslashes
   const buildImgUrl = (base: string, foto: string) => {
-    const cleanBase = base.replace(/\/+$/, ""); // quita / al final
+    const cleanBase = base.replace(/\/+$/, "");
     const cleanFoto = (foto || "")
-      .replace(/^\/+/, "") // quita / al inicio
-      .replace(/\\/g, "/"); // cambia \ por /
-    return `${cleanBase}/${encodeURI(cleanFoto)}`; // encode por espacios
+      .replace(/^\/+/, "")
+      .replace(/\\/g, "/");
+    return `${cleanBase}/${encodeURI(cleanFoto)}`;
   };
+
+  // ✅ Si está cargando o aún no hay data, mostramos un loader (evita ver el anterior)
+  if (loading || !colitasDetalle) {
+    return (
+      <Card sx={{ maxWidth: 700, mx: "auto", boxShadow: 4, borderRadius: 3 }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}>
+          <Typography variant="h5" fontWeight="bold" color="text.primary">
+            Cargando...
+          </Typography>
+          <IconButton onClick={() => setOpenModa(false)}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Box
+          sx={{
+            height: 280,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#f9f9f9",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+
+        <CardContent sx={{ px: 4, py: 3 }}>
+          <Typography variant="body1">Por favor espera un momento.</Typography>
+        </CardContent>
+      </Card>
+    );
+  }
 
   const imageUrl = buildImgUrl(urlBase.pathBase, colitasDetalle?.foto);
 
@@ -68,12 +102,16 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa }: any) 
 
         <Typography sx={{ mb: 1 }}>
           <strong>Observaciones:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>{colitasDetalle?.observaciones}</span>
+          <span style={{ fontWeight: 400 }}>
+            {colitasDetalle?.observaciones}
+          </span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>
           <strong>Esterilización:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>{colitasDetalle?.esterelizacion}</span>
+          <span style={{ fontWeight: 400 }}>
+            {colitasDetalle?.esterelizacion}
+          </span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>

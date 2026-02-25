@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
-import { dataPerdidos } from "../Interfaces/dataPerdido";
-import moment from "moment";
 import React from "react";
 import { Box, Modal } from "@mui/material";
 import urlBase from "../../../config/index";
@@ -13,41 +10,55 @@ interface props {
 }
 
 export default function Perdidos({ perdidosRecientes }: props) {
-  // ✅ Función para construir bien la URL de la imagen (sin doble // y con espacios)
+  // ✅ Construye la URL sin doble //, soporta espacios y backslashes
   const buildImgUrl = (base: string, foto: string) => {
-    const cleanBase = base.replace(/\/+$/, ""); // quita / al final
-    const cleanFoto = (foto || "")
-      .replace(/^\/+/, "")          // quita / al inicio
-      .replace(/\\/g, "/");         // cambia \ por /
-    return `${cleanBase}/${encodeURI(cleanFoto)}`; // encode por espacios
+    const cleanBase = base.replace(/\/+$/, "");
+    const cleanFoto = (foto || "").replace(/^\/+/, "").replace(/\\/g, "/");
+    return `${cleanBase}/${encodeURI(cleanFoto)}`;
   };
 
   const [openModal, setOpenModa] = React.useState<boolean>(false);
   const [idDetil, setDetail] = React.useState<any>("");
-  const [colitasDetalle, setcolitasDetalle] = React.useState<any>();
+  const [colitasDetalle, setcolitasDetalle] = React.useState<any>(null);
+
+  // ✅ Nuevo: loading para evitar “flash” del anterior
+  const [loadingDetail, setLoadingDetail] = React.useState<boolean>(false);
 
   const openModalDetail = (value: any) => {
+    // ✅ Limpia el detalle anterior y muestra loading
+    setcolitasDetalle(null);
+    setLoadingDetail(true);
+
+    // set ID y abre modal
     setDetail(value);
     setOpenModa(true);
   };
 
-  const getByIdPerdidos = async () => {
-    const url = urlBase.pathBase + "colitas/detail/" + idDetil;
+  const getByIdPerdidos = async (id: any) => {
+    const url = urlBase.pathBase + "colitas/detail/" + id;
+
+    setLoadingDetail(true);
+
     axios
       .get(url)
       .then((response) => {
-        console.log("responsive", response.data);
         const { data, code } = response.data;
         if (code === "000") {
           setcolitasDetalle(data);
+        } else {
+          setcolitasDetalle(null);
         }
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => {
+        console.log(e.message);
+        setcolitasDetalle(null);
+      })
+      .finally(() => setLoadingDetail(false));
   };
 
   React.useEffect(() => {
     if (idDetil) {
-      getByIdPerdidos();
+      getByIdPerdidos(idDetil);
     }
   }, [idDetil]);
 
@@ -76,6 +87,7 @@ export default function Perdidos({ perdidosRecientes }: props) {
           <DetailPerdido
             colitasDetalle={colitasDetalle}
             setOpenModa={setOpenModa}
+            loading={loadingDetail}   // ✅ Nuevo
           />
         </Box>
       </Modal>
@@ -89,9 +101,7 @@ export default function Perdidos({ perdidosRecientes }: props) {
           <div
             className="col-lg-3 col-md-6"
             key={item.idanimal}
-            onClick={() => {
-              openModalDetail(item.idanimal);
-            }}
+            onClick={() => openModalDetail(item.idanimal)}
           >
             <div className="team card position-relative overflow-hidden border-0 mb-4">
               <img
