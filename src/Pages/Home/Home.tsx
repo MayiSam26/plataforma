@@ -246,8 +246,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container-fluid">
-        <div className="container p-0 py-5">
+     <div className="container-fluid py-2">
+  <div className="row align-items-center px-lg-5">
           <div className="d-flex flex-column text-center mb-5">
             <h4 className="text-secondary mb-3">Testimonial</h4>
             <h1 className="display-4 m-0">
