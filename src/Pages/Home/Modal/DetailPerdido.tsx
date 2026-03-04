@@ -10,7 +10,10 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import moment from "moment";
+import "moment/locale/es"; // ✅ importar locale español
 import urlBase from "../../../config/index";
+
+moment.locale("es"); // ✅ activar español
 
 export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading }: any) {
   // ✅ Construye la URL sin doble //, soporta espacios y backslashes
