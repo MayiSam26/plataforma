@@ -10,37 +10,42 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import moment from "moment";
-import "moment/locale/es"; // ✅ importar locale español
+import "moment/locale/es";
 import urlBase from "../../../config/index";
 
-moment.locale("es"); // ✅ activar español
+moment.locale("es");
 
 export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading }: any) {
-  // ✅ Construye la URL sin doble //, soporta espacios y backslashes
   const buildImgUrl = (base: string, foto: string) => {
     const cleanBase = base.replace(/\/+$/, "");
-    const cleanFoto = (foto || "")
-      .replace(/^\/+/, "")
-      .replace(/\\/g, "/");
+    const cleanFoto = (foto || "").replace(/^\/+/, "").replace(/\\/g, "/");
     return `${cleanBase}/${encodeURI(cleanFoto)}`;
   };
 
-  // ✅ Si está cargando o aún no hay data, mostramos un loader (evita ver el anterior)
   if (loading || !colitasDetalle) {
     return (
-      <Card sx={{ maxWidth: 700, mx: "auto", boxShadow: 4, borderRadius: 3 }}>
+      <Card
+        sx={{
+          width: "100%",
+          maxWidth: { xs: "92vw", sm: 700 },
+          mx: "auto",
+          boxShadow: 4,
+          borderRadius: 3,
+          overflow: "hidden",
+        }}
+      >
         <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}>
           <Typography variant="h5" fontWeight="bold" color="text.primary">
             Cargando...
           </Typography>
-          <IconButton onClick={() => setOpenModa(false)}>
+          <IconButton onClick={() => setOpenModa(false)} sx={{ flexShrink: 0 }}>
             <CloseIcon />
           </IconButton>
         </Box>
 
         <Box
           sx={{
-            height: 280,
+            height: { xs: 220, sm: 280 },
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -51,7 +56,7 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
           <CircularProgress />
         </Box>
 
-        <CardContent sx={{ px: 4, py: 3 }}>
+        <CardContent sx={{ px: { xs: 2, sm: 4 }, py: 3 }}>
           <Typography variant="body1">Por favor espera un momento.</Typography>
         </CardContent>
       </Card>
@@ -61,12 +66,26 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
   const imageUrl = buildImgUrl(urlBase.pathBase, colitasDetalle?.foto);
 
   return (
-    <Card sx={{ maxWidth: 700, mx: "auto", boxShadow: 4, borderRadius: 3 }}>
+    <Card
+      sx={{
+        width: "100%",
+        maxWidth: { xs: "92vw", sm: 700 },
+        mx: "auto",
+        boxShadow: 4,
+        borderRadius: 3,
+        overflow: "hidden",
+      }}
+    >
       <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}>
-        <Typography variant="h5" fontWeight="bold" color="text.primary">
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          color="text.primary"
+          sx={{ pr: 1, wordBreak: "break-word" }}
+        >
           {colitasDetalle?.nombre}
         </Typography>
-        <IconButton onClick={() => setOpenModa(false)}>
+        <IconButton onClick={() => setOpenModa(false)} sx={{ flexShrink: 0 }}>
           <CloseIcon />
         </IconButton>
       </Box>
@@ -76,16 +95,21 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
         image={imageUrl}
         alt={colitasDetalle?.nombre}
         sx={{
-          height: 280,
           width: "100%",
-          objectFit: "contain",
-          borderRadius: 0,
+          height: { xs: 220, sm: 280 },
+          objectFit: "cover",
           backgroundColor: "#f9f9f9",
         }}
       />
 
-      <CardContent sx={{ px: 4 }}>
-        <Box display="flex" justifyContent="space-between" py={1}>
+      <CardContent sx={{ px: { xs: 2, sm: 4 }, pb: 3 }}>
+        <Box
+          display="flex"
+          flexDirection={{ xs: "column", sm: "row" }}
+          justifyContent="space-between"
+          gap={1}
+          py={1}
+        >
           <Typography fontWeight={700} color="#ED6436" textTransform="capitalize">
             Tamaño: {colitasDetalle?.tamano}
           </Typography>
@@ -98,23 +122,17 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
 
         <Typography sx={{ mb: 1 }}>
           <strong>Edad:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>
-            {colitasDetalle?.Edada_Aprox} año(s)
-          </span>
+          <span style={{ fontWeight: 400 }}>{colitasDetalle?.Edada_Aprox} año(s)</span>
         </Typography>
 
-        <Typography sx={{ mb: 1 }}>
+        <Typography sx={{ mb: 1, wordBreak: "break-word" }}>
           <strong>Observaciones:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>
-            {colitasDetalle?.observaciones}
-          </span>
+          <span style={{ fontWeight: 400 }}>{colitasDetalle?.observaciones}</span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>
           <strong>Esterilización:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>
-            {colitasDetalle?.esterelizacion}
-          </span>
+          <span style={{ fontWeight: 400 }}>{colitasDetalle?.esterelizacion}</span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>

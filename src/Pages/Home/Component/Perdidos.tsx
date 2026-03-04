@@ -63,13 +63,21 @@ export default function Perdidos({ perdidosRecientes }: props) {
   }, [idDetil]);
 
   const modalDetail = () => {
+    // ✅ RESPONSIVE MODAL STYLE
     const style = {
       position: "absolute" as "absolute",
       top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
-      width: 700,
-      p: 0,
+
+      width: "92vw",        // ✅ ancho en móvil
+      maxWidth: 700,        // ✅ límite en desktop
+      maxHeight: "90vh",    // ✅ no se sale de la pantalla
+      overflowY: "auto",    // ✅ scroll dentro si es alto
+
+      p: 2,                 // ✅ padding para que no choque con bordes en móvil
+      outline: "none",
+
       backgroundColor: "transparent",
       border: "none",
       boxShadow: "none",
@@ -87,7 +95,7 @@ export default function Perdidos({ perdidosRecientes }: props) {
           <DetailPerdido
             colitasDetalle={colitasDetalle}
             setOpenModa={setOpenModa}
-            loading={loadingDetail}   // ✅ Nuevo
+            loading={loadingDetail} // ✅ Nuevo
           />
         </Box>
       </Modal>
