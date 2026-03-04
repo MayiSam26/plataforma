@@ -15,7 +15,11 @@ import urlBase from "../../../config/index";
 
 moment.locale("es");
 
-export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading }: any) {
+export default function CardDetalleAnimal({
+  colitasDetalle,
+  setOpenModa,
+  loading,
+}: any) {
   const buildImgUrl = (base: string, foto: string) => {
     const cleanBase = base.replace(/\/+$/, "");
     const cleanFoto = (foto || "").replace(/^\/+/, "").replace(/\\/g, "/");
@@ -34,7 +38,14 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
           overflow: "hidden",
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            px: 2,
+            pt: 2,
+          }}
+        >
           <Typography variant="h5" fontWeight="bold" color="text.primary">
             Cargando...
           </Typography>
@@ -76,7 +87,9 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
         overflow: "hidden",
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}>
+      <Box
+        sx={{ display: "flex", justifyContent: "space-between", px: 2, pt: 2 }}
+      >
         <Typography
           variant="h5"
           fontWeight="bold"
@@ -96,9 +109,10 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
         alt={colitasDetalle?.nombre}
         sx={{
           width: "100%",
-          height: { xs: 220, sm: 280 },
-          objectFit: "cover",
-          backgroundColor: "#f9f9f9",
+          height: { xs: 220, sm: 320 }, // puedes ajustar
+          objectFit: "contain", // ✅ NO recorta, muestra completa
+          backgroundColor: "#f9f9f9", // ✅ relleno para los espacios
+          display: "block",
         }}
       />
 
@@ -110,10 +124,18 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
           gap={1}
           py={1}
         >
-          <Typography fontWeight={700} color="#ED6436" textTransform="capitalize">
+          <Typography
+            fontWeight={700}
+            color="#ED6436"
+            textTransform="capitalize"
+          >
             Tamaño: {colitasDetalle?.tamano}
           </Typography>
-          <Typography fontWeight={700} color="#65C178" textTransform="capitalize">
+          <Typography
+            fontWeight={700}
+            color="#65C178"
+            textTransform="capitalize"
+          >
             Género: {colitasDetalle?.idgenero == 1 ? "Macho" : "Hembra"}
           </Typography>
         </Box>
@@ -122,17 +144,23 @@ export default function CardDetalleAnimal({ colitasDetalle, setOpenModa, loading
 
         <Typography sx={{ mb: 1 }}>
           <strong>Edad:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>{colitasDetalle?.Edada_Aprox} año(s)</span>
+          <span style={{ fontWeight: 400 }}>
+            {colitasDetalle?.Edada_Aprox} año(s)
+          </span>
         </Typography>
 
         <Typography sx={{ mb: 1, wordBreak: "break-word" }}>
           <strong>Observaciones:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>{colitasDetalle?.observaciones}</span>
+          <span style={{ fontWeight: 400 }}>
+            {colitasDetalle?.observaciones}
+          </span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>
           <strong>Esterilización:</strong>{" "}
-          <span style={{ fontWeight: 400 }}>{colitasDetalle?.esterelizacion}</span>
+          <span style={{ fontWeight: 400 }}>
+            {colitasDetalle?.esterelizacion}
+          </span>
         </Typography>
 
         <Typography sx={{ mb: 1 }}>
