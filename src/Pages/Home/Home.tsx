@@ -54,8 +54,8 @@ export default function Home() {
     <Fragment>
       <MiniNav />
 
-      <div className="container-fluid">
-        <div className="row py-3 px-lg-5">
+     <div className="container">
+  <div className="row py-3 align-items-center">
           <div className="col-lg-4">
             <Link
               to="/"
