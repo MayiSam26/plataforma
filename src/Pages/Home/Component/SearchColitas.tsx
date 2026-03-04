@@ -58,8 +58,8 @@ export default function FiltroAnimales({
             onChange={(e) => handleTipoAnimal(e.target.value as string)}
             >
               <MenuItem value="">Todos</MenuItem>
-               <MenuItem value="1">Perro</MenuItem>
-                <MenuItem value="2">Gato</MenuItem>
+               <MenuItem value="2">Perro</MenuItem>
+                <MenuItem value="1">Gato</MenuItem>
             </Select>
           </FormControl>
         </Grid>
