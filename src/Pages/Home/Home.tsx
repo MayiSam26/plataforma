@@ -1,13 +1,12 @@
 import { Fragment } from "react/jsx-runtime";
 import Nav from "./Component/Nav";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "./Component/Header";
 import Hero from "./Component/Hero";
 import Info from "./Component/Info";
 import Plan from "./Component/Plan";
 import MiniNav from "./Component/MiniNav";
 import Perdidos from "./Component/Perdidos";
-import { url } from "inspector";
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -19,12 +18,12 @@ import { Button } from "@mui/material";
 export default function Home() {
   const [plan, setPlan] = React.useState<any[]>([]);
   const [perdidosRecientes, setPerdidosRecientes] = React.useState<any[]>([]);
-  const navigate = useNavigate();
+
   React.useEffect(() => {
     AOS.init({});
   }, []);
+
   const getPlan = async () => {
-    //const url = urlBase.pathBase + "/plan-mensual/list";
     const url = urlBase.pathBase + "plan-mensual/list";
     axios
       .get(url)
@@ -38,37 +37,33 @@ export default function Home() {
   const getPerdidoRecientes = () => {
     const url = urlBase.pathBase + "colitas/list";
     axios
-      .post(url, {
-        estado: "En refugio","limite": 4
-      })
+      .post(url, { estado: "En refugio", limite: 4 })
       .then((response) => {
         const { data } = response.data;
         setPerdidosRecientes(data);
       })
       .catch((e) => console.log(e.message));
   };
+
   useEffect(() => {
     getPlan();
     getPerdidoRecientes();
   }, []);
+
   return (
     <Fragment>
       <MiniNav />
+
       <div className="container-fluid">
         <div className="row py-3 px-lg-5">
           <div className="col-lg-4">
             <Link
               to="/"
               className="navbar-brand d-none d-flex"
-              style={{
-                alignItems: "center",
-              }}
+              style={{ alignItems: "center" }}
             >
               <img src="/img/logocito.png" style={{ width: "60px" }} />
-              <h3
-                className="m-0 display-5 text-capitalize"
-                style={{ lineHeight: "0px" }}
-              >
+              <h3 className="m-0 display-5 text-capitalize" style={{ lineHeight: "0px" }}>
                 <h6>Refugio</h6>
                 <span className="text-primary">Colitas</span> & Amor
               </h3>
@@ -77,8 +72,10 @@ export default function Home() {
           <Nav />
         </div>
       </div>
+
       <Header />
       <Hero />
+
       <div className="container-fluid bg-light">
         <div className="container">
           <div
@@ -91,16 +88,13 @@ export default function Home() {
             }}
           >
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
-              <h4 className="text-secondary mb-3 text-center">
-                ¿Comó puedes ayudar?
-              </h4>
+              <h4 className="text-secondary mb-3 text-center">¿Comó puedes ayudar?</h4>
               <h1 className="display-4 mb-4 text-center">
                 Colitas<span className="text-primary"> & Amor</span>
               </h1>
               <p className="text-center">
-                Un refugio comprometido con el bienestar animal. Aquí,cada
-                latido y aporte es un gesto de amor hacia los peluditos
-                nescesitados.
+                Un refugio comprometido con el bienestar animal. Aquí,cada latido y aporte
+                es un gesto de amor hacia los peluditos nescesitados.
               </p>
               <Info />
             </div>
@@ -116,14 +110,12 @@ export default function Home() {
               <span>Colitas</span> & <span className="text-primary">Amor</span>
             </h1>
             <h5 className="text-muted mb-3">
-              Fundado por el Prof. Luis Pereda Roque ubicado en el corazón del
-              Callao,Perú
+              Fundado por el Prof. Luis Pereda Roque ubicado en el corazón del Callao,Perú
             </h5>
             <p className="mb-4">
-              Nuestra Mision es brindar refugio,cuidado y amor a los peluditos
-              mas necesitados, mientras trabajamos para encontrar hogares
-              amorosos y educar a la comunidad sobre el cuidado responsable de
-              los animales. Nuestros objetivos son:
+              Nuestra Mision es brindar refugio,cuidado y amor a los peluditos mas
+              necesitados, mientras trabajamos para encontrar hogares amorosos y educar a
+              la comunidad sobre el cuidado responsable de los animales. Nuestros objetivos son:
             </p>
             <ul className="list-inline">
               <li>
@@ -135,15 +127,13 @@ export default function Home() {
               <li>
                 <h5>
                   <i className="fa fa-check-double text-secondary mr-3"></i>
-                  Crear conciensia sobre el cuidado de los peluditos y la
-                  naturaleza
+                  Crear conciensia sobre el cuidado de los peluditos y la naturaleza
                 </h5>
               </li>
               <li>
                 <h5>
                   <i className="fa fa-check-double text-secondary mr-3"></i>
-                  Crear video con nuestro rescataditos que diviertan y enseñen a
-                  la comunidad amar a los peluditos
+                  Crear video con nuestro rescataditos que diviertan y enseñen a la comunidad amar a los peluditos
                 </h5>
               </li>
             </ul>
@@ -151,11 +141,7 @@ export default function Home() {
           <div className="col-lg-5">
             <div className="row px-3">
               <div className="col-12 p-0">
-                <img
-                  className="img-fluid w-100"
-                  src="img/somos-10.png"
-                  alt=""
-                />
+                <img className="img-fluid w-100" src="img/somos-10.png" alt="" />
               </div>
               <div className="col-6 p-0">
                 <img className="img-fluid w-100" src="img/somos-2.png" alt="" />
@@ -189,30 +175,32 @@ export default function Home() {
             Colitas <span className="text-primary">en Refugio</span>
           </h1>
         </div>
+
         <div className="row">
           <Perdidos perdidosRecientes={perdidosRecientes} />
         </div>
+
+        {/* ✅ CAMBIO: Link + Button para que NO haga scroll al footer */}
         <div style={{ display: "flex", justifyContent: "start" }}>
-          <Button
-            onClick={() => navigate("/colitas")}
-            sx={{
-              background: "#ED6436",
-              py: 1,
-              px: 1,
-              color: "white",
-              textTransform: "capitalize",
-              borderRadius: "8px",
-              width: "150px",
-              "&:hover": {
-                background: "#FF8C69",
-              },
-              ml: "auto",
-            }}
-          >
-            Ver más
-          </Button>
+          <Link to="/colitas" style={{ marginLeft: "auto", textDecoration: "none" }}>
+            <Button
+              sx={{
+                background: "#ED6436",
+                py: 1,
+                px: 1,
+                color: "white",
+                textTransform: "capitalize",
+                borderRadius: "8px",
+                width: "150px",
+                "&:hover": { background: "#FF8C69" },
+              }}
+            >
+              Ver más
+            </Button>
+          </Link>
         </div>
       </div>
+
       <div className="container-fluid bg-light pt-5 pb-4">
         <div className="container">
           <div className="row align-items-center">
@@ -222,12 +210,10 @@ export default function Home() {
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
               <h4 className="text-secondary mb-3">¿Quiere adoptar?</h4>
               <h1 className="display-4 mb-4">
-                <span className="text-primary">Adopta a una de </span> Nuestras
-                Colitas
+                <span className="text-primary">Adopta a una de </span> Nuestras Colitas
               </h1>
               <p className="mb-4">
-                Algunos de nuestros requisitos para adoptar una colita de nustro
-                refugio son:
+                Algunos de nuestros requisitos para adoptar una colita de nustro refugio son:
               </p>
               <div className="row py-2">
                 <div className="col-6">
@@ -270,30 +256,18 @@ export default function Home() {
           </div>
 
           <div className="row m-auto justify-content-around">
-            <img
-              data-aos="fade-up"
-              src="/img/testimonio1.png"
-              data-aos-duration="2000"
-            />
+            <img data-aos="fade-up" src="/img/testimonio1.png" data-aos-duration="2000" />
             <img src="/img/testimonio4.png" />
-            <img
-              src="/img/testimonio3.png"
-              data-aos="fade-up"
-              data-aos-duration="2000"
-            />
-
+            <img src="/img/testimonio3.png" data-aos="fade-up" data-aos-duration="2000" />
             <img src="/img/testimonio2.png" />
-            <img
-              src="/img/testimonio5.png"
-              data-aos="fade-up"
-              data-aos-duration="2000"
-            />
+            <img src="/img/testimonio5.png" data-aos="fade-up" data-aos-duration="2000" />
             <img src="/img/testimonio6.png" />
           </div>
         </div>
       </div>
+
       <div id="contacto">
-      <Footer  />
+        <Footer />
       </div>
     </Fragment>
   );
