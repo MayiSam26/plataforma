@@ -82,22 +82,31 @@ export default function Footer(){
                                 </div>
                             </div>
                             <div className="col-md-3 mb-5">
-                                <h5 className="text-primary mb-4">Doname</h5>
-                                <div className="d-flex flex-column justify-content-start">
-                                    <Link className="text-white mb-2" to={'https://www.paypal.com/paypalme/LPeredaroque'} target="_blank">
-                                        <i className="fa fa-angle-right mr-2"></i> <i className="fab fa-paypal mr-2"></i>Paypal
-                                    </Link>
-                                    <Link className="text-white mb-2" to={'https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_0d660a790034987b932d408b29dd22b2.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1712510013&Signature=BEhDivb9FTEf5qOQX%2FbUhbjfqJk%3D'} target="_blank">
-                                        <i className="fa fa-angle-right mr-2"></i><i className="fa-solid fa-qrcode mr-2"></i>Yape
-                                    </Link>
-                                    <Link className="text-white mb-2" to={'https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_e9aa09120428387ad38a59d17ef4e2e3.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1712510045&Signature=H17zCSHMCU4hsr%2FPSF%2FkuZQt0Vc%3D'} target="_blank">
-                                        <i className="fa fa-angle-right mr-2"></i><i className="fa-solid fa-credit-card mr-2"></i>BCP
-                                    </Link>
-                                    <Link className="text-white mb-2" to="https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_868ffe7ed4c12460f252dab0c5337942.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1712510133&Signature=Rt5WKlyaGkklvwk%2FJ0LoqlkcKBc%3D" target="_blank">
-                                        <i className="fa fa-angle-right mr-2"></i><i className="fa-solid fa-credit-card mr-2"></i>Interbank
-                                    </Link>
-                                </div>
-                            </div>
+    <h5 className="text-primary mb-4">Doname</h5>
+    <div className="d-flex flex-column justify-content-start">
+        
+        <span className="text-white mb-2">
+            <i className="fa fa-angle-right mr-2"></i> 
+            <i className="fab fa-paypal mr-2"></i>Paypal
+        </span>
+
+        <span className="text-white mb-2">
+            <i className="fa fa-angle-right mr-2"></i>
+            <i className="fa-solid fa-qrcode mr-2"></i>Yape
+        </span>
+
+        <span className="text-white mb-2">
+            <i className="fa fa-angle-right mr-2"></i>
+            <i className="fa-solid fa-credit-card mr-2"></i>BCP
+        </span>
+
+        <span className="text-white mb-2">
+            <i className="fa fa-angle-right mr-2"></i>
+            <i className="fa-solid fa-credit-card mr-2"></i>Interbank
+        </span>
+
+    </div>
+</div>
                             <div className="col-md-5 mb-5">
                                 <h5 className="text-primary mb-4">Contactanos</h5>
                                 {mssg == true?snackAlert():null}
