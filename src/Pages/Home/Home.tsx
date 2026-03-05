@@ -54,47 +54,47 @@ export default function Home() {
     <Fragment>
       <MiniNav />
 
-     <div className="container">
-  <div className="row py-3 align-items-center">
-          <div className="col-lg-4">
+      {/* ✅ TOP: LOGO + BLOQUE INFO (RESPONSIVE y sin “espacio raro” en laptop) */}
+      <div className="container py-3">
+        <div className="row align-items-center">
+          <div className="col-lg-4 col-md-12 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start">
             <Link
               to="/"
-              className="navbar-brand d-none d-flex"
-              style={{ alignItems: "center" }}
+              className="navbar-brand d-flex"
+              style={{ alignItems: "center", textDecoration: "none" }}
             >
               <img src="/img/logocito.png" style={{ width: "60px" }} />
-              <h3 className="m-0 display-5 text-capitalize" style={{ lineHeight: "0px" }}>
-                <h6>Refugio</h6>
-                <span className="text-primary">Colitas</span> & Amor
-              </h3>
+              <div style={{ marginLeft: 10 }}>
+                <div style={{ fontSize: 14, color: "#111" }}>Refugio</div>
+                <div style={{ fontSize: 22, fontWeight: 800, lineHeight: "18px" }}>
+                  <span className="text-primary">Colitas</span> & Amor
+                </div>
+              </div>
             </Link>
           </div>
-          <Nav />
+
+          {/* ESTE ES TU COMPONENTE Nav.tsx */}
+          <div className="col-lg-8 col-md-12">
+            <Nav />
+          </div>
         </div>
       </div>
 
       <Header />
       <Hero />
 
+      {/* ✅ ¿Cómo puedes ayudar? */}
       <div className="container-fluid bg-light">
         <div className="container">
-          <div
-            className="py-5"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "auto",
-              alignItems: "center",
-            }}
-          >
+          <div className="py-5 d-flex justify-content-center">
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
               <h4 className="text-secondary mb-3 text-center">¿Comó puedes ayudar?</h4>
               <h1 className="display-4 mb-4 text-center">
                 Colitas<span className="text-primary"> & Amor</span>
               </h1>
               <p className="text-center">
-                Un refugio comprometido con el bienestar animal. Aquí,cada latido y aporte
-                es un gesto de amor hacia los peluditos nescesitados.
+                Un refugio comprometido con el bienestar animal. Aquí, cada latido y aporte
+                es un gesto de amor hacia los peluditos necesitados.
               </p>
               <Info />
             </div>
@@ -102,6 +102,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ✅ Nosotros */}
       <div className="container py-5" id="nosotros">
         <div className="row py-5">
           <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
@@ -110,34 +111,36 @@ export default function Home() {
               <span>Colitas</span> & <span className="text-primary">Amor</span>
             </h1>
             <h5 className="text-muted mb-3">
-              Fundado por el Prof. Luis Pereda Roque ubicado en el corazón del Callao,Perú
+              Fundado por el Prof. Luis Pereda Roque ubicado en el corazón del Callao, Perú
             </h5>
             <p className="mb-4">
-              Nuestra Mision es brindar refugio,cuidado y amor a los peluditos mas
-              necesitados, mientras trabajamos para encontrar hogares amorosos y educar a
-              la comunidad sobre el cuidado responsable de los animales. Nuestros objetivos son:
+              Nuestra misión es brindar refugio, cuidado y amor a los peluditos más necesitados,
+              mientras trabajamos para encontrar hogares amorosos y educar a la comunidad sobre
+              el cuidado responsable de los animales.
             </p>
+
             <ul className="list-inline">
               <li>
                 <h5>
                   <i className="fa fa-check-double text-secondary mr-3"></i>
-                  Promover el rescate y adopcion de colitas
+                  Promover el rescate y adopción de colitas
                 </h5>
               </li>
               <li>
                 <h5>
                   <i className="fa fa-check-double text-secondary mr-3"></i>
-                  Crear conciensia sobre el cuidado de los peluditos y la naturaleza
+                  Crear conciencia sobre el cuidado y la naturaleza
                 </h5>
               </li>
               <li>
                 <h5>
                   <i className="fa fa-check-double text-secondary mr-3"></i>
-                  Crear video con nuestro rescataditos que diviertan y enseñen a la comunidad amar a los peluditos
+                  Crear videos que eduquen y diviertan a la comunidad
                 </h5>
               </li>
             </ul>
           </div>
+
           <div className="col-lg-5">
             <div className="row px-3">
               <div className="col-12 p-0">
@@ -154,6 +157,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ✅ Donar */}
       <div className="container-fluid bg-light pt-5 pb-4" id="donar">
         <div className="container py-5">
           <div className="d-flex flex-column text-center mb-5">
@@ -168,9 +172,10 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ✅ Adoptar */}
       <div className="container mt-5 pt-5 pb-3" id="adoptar">
         <div className="d-flex flex-column text-center mb-5">
-          <h4 className="text-secondary mb-3">Ayudanos a Adoptar</h4>
+          <h4 className="text-secondary mb-3">Ayúdanos a Adoptar</h4>
           <h1 className="display-4 m-0">
             Colitas <span className="text-primary">en Refugio</span>
           </h1>
@@ -180,18 +185,18 @@ export default function Home() {
           <Perdidos perdidosRecientes={perdidosRecientes} />
         </div>
 
-        {/* ✅ CAMBIO: Link + Button para que NO haga scroll al footer */}
-        <div style={{ display: "flex", justifyContent: "start" }}>
-          <Link to="/colitas" style={{ marginLeft: "auto", textDecoration: "none" }}>
+        {/* ✅ "Ver más" correcto */}
+        <div className="d-flex justify-content-end">
+          <Link to="/colitas" style={{ textDecoration: "none" }}>
             <Button
               sx={{
                 background: "#ED6436",
                 py: 1,
-                px: 1,
+                px: 2,
                 color: "white",
                 textTransform: "capitalize",
-                borderRadius: "8px",
-                width: "150px",
+                borderRadius: "10px",
+                width: "170px",
                 "&:hover": { background: "#FF8C69" },
               }}
             >
@@ -201,6 +206,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ✅ Requisitos */}
       <div className="container-fluid bg-light pt-5 pb-4">
         <div className="container">
           <div className="row align-items-center">
@@ -212,61 +218,69 @@ export default function Home() {
               <h1 className="display-4 mb-4">
                 <span className="text-primary">Adopta a una de </span> Nuestras Colitas
               </h1>
-              <p className="mb-4">
-                Algunos de nuestros requisitos para adoptar una colita de nustro refugio son:
-              </p>
+              <p className="mb-4">Algunos requisitos para adoptar una colita son:</p>
+
               <div className="row py-2">
                 <div className="col-6">
                   <div className="d-flex align-items-center mb-4">
                     <h1 className="flaticon-cat font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Se Mayor de edad</h5>
+                    <h5 className="text-truncate m-0">Ser mayor de edad</h5>
                   </div>
                 </div>
                 <div className="col-6">
                   <div className="d-flex align-items-center mb-4">
                     <h1 className="flaticon-doctor font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Cuidado y Compromiso</h5>
+                    <h5 className="text-truncate m-0">Cuidado y compromiso</h5>
                   </div>
                 </div>
                 <div className="col-6">
                   <div className="d-flex align-items-center">
                     <h1 className="flaticon-care font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Paciencia y Amor</h5>
+                    <h5 className="text-truncate m-0">Paciencia y amor</h5>
                   </div>
                 </div>
                 <div className="col-6">
                   <div className="d-flex align-items-center">
                     <h1 className="flaticon-dog font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Ficha de adopcion</h5>
+                    <h5 className="text-truncate m-0">Ficha de adopción</h5>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
 
-     <div className="container-fluid py-2">
-  <div className="row align-items-center px-lg-5">
-          <div className="row">
-  <div className="col-12">
-    <div className="d-flex flex-column align-items-center text-center mb-5">
-      <h4 className="text-secondary mb-3">Testimonial</h4>
-      <h1 className="display-4 m-0">
-        Datos y <span className="text-primary">Logros</span>
-      </h1>
-    </div>
-  </div>
-</div>
+      {/* ✅ Datos y Logros (ARREGLADO y centrado) */}
+      <div className="container py-5">
+        <div className="text-center mb-5">
+          <h4 className="text-secondary mb-3">Testimonial</h4>
+          <h1 className="display-4 m-0">
+            Datos y <span className="text-primary">Logros</span>
+          </h1>
+        </div>
 
-          <div className="row m-auto justify-content-around">
-            <img data-aos="fade-up" src="/img/testimonio1.png" data-aos-duration="2000" />
-            <img src="/img/testimonio4.png" />
-            <img src="/img/testimonio3.png" data-aos="fade-up" data-aos-duration="2000" />
-            <img src="/img/testimonio2.png" />
-            <img src="/img/testimonio5.png" data-aos="fade-up" data-aos-duration="2000" />
-            <img src="/img/testimonio6.png" />
-          </div>
+        {/* ✅ IMÁGENES RESPONSIVE EN GRID */}
+        <div className="row justify-content-center text-center">
+          {[
+            "/img/testimonio1.png",
+            "/img/testimonio4.png",
+            "/img/testimonio3.png",
+            "/img/testimonio2.png",
+            "/img/testimonio5.png",
+            "/img/testimonio6.png",
+          ].map((src, idx) => (
+            <div key={idx} className="col-lg-4 col-md-6 col-12 mb-4">
+              <img
+                src={src}
+                className="img-fluid"
+                style={{ maxHeight: 220, objectFit: "contain" }}
+                data-aos={idx % 2 === 0 ? "fade-up" : undefined}
+                data-aos-duration="2000"
+              />
+            </div>
+          ))}
         </div>
       </div>
 
