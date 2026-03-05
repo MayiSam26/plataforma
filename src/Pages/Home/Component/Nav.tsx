@@ -4,16 +4,17 @@ import { dataNav } from "../Interfaces/dataNav";
 export default function Nav() {
   return (
     <Fragment>
-      <div className="col-lg-8 d-flex justify-content-center justify-content-lg-end">
-        <div className="top-info d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-          {dataNav.map((item: any, index: number) => (
+      <div className="col-lg-8">
+        {/* ✅ usa las clases que pusimos en tu SCSS */}
+        <div className="top-info d-flex flex-column flex-lg-row justify-content-lg-end align-items-center gap-3">
+          {dataNav.map((item, idx) => (
             <div
               key={item.id}
               className={`top-info__item text-center ${
-                index !== dataNav.length - 1 ? "top-info__divider" : ""
+                idx !== dataNav.length - 1 ? "top-info__divider" : ""
               }`}
             >
-              <h6 className="m-0">{item.name}</h6>
+              <h6 className="mb-1">{item.name}</h6>
               <p className="m-0">{item.description}</p>
             </div>
           ))}
