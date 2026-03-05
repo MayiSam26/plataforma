@@ -4,18 +4,19 @@ import { dataNav } from "../Interfaces/dataNav";
 export default function Nav() {
   return (
     <Fragment>
-      <div className="col-lg-8 d-flex justify-content-lg-end justify-content-center">
-        <div className="d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
-          {dataNav.map((item: any, idx: number) => (
+      {/* ✅ Contenedor: en desktop a la derecha, en móvil centrado */}
+      <div className="col-lg-8 d-flex justify-content-center justify-content-lg-end">
+        {/* ✅ Wrapper: permite que en pantallas medianas envuelva sin romper */}
+        <div className="top-info d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+          {dataNav.map((item: any, index: number) => (
             <div
               key={item.id}
-              className={`text-center px-3 py-2 ${
-                idx !== dataNav.length - 1 ? "border-right" : ""
+              className={`top-info__item text-center px-3 ${
+                index !== dataNav.length - 1 ? "top-info__divider" : ""
               }`}
-              style={{ minWidth: "180px" }}
             >
-              <h6 className="mb-1">{item.name}</h6>
-              <p className="m-0 small text-muted">{item.description}</p>
+              <h6 className="m-0">{item.name}</h6>
+              <p className="m-0">{item.description}</p>
             </div>
           ))}
         </div>
