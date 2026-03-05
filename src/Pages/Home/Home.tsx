@@ -248,12 +248,16 @@ export default function Home() {
 
      <div className="container-fluid py-2">
   <div className="row align-items-center px-lg-5">
-          <div className="d-flex flex-column text-center mb-5">
-            <h4 className="text-secondary mb-3">Testimonial</h4>
-            <h1 className="display-4 m-0">
-              Datos y <span className="text-primary">Logros</span>
-            </h1>
-          </div>
+          <div className="row">
+  <div className="col-12">
+    <div className="d-flex flex-column align-items-center text-center mb-5">
+      <h4 className="text-secondary mb-3">Testimonial</h4>
+      <h1 className="display-4 m-0">
+        Datos y <span className="text-primary">Logros</span>
+      </h1>
+    </div>
+  </div>
+</div>
 
           <div className="row m-auto justify-content-around">
             <img data-aos="fade-up" src="/img/testimonio1.png" data-aos-duration="2000" />
