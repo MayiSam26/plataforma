@@ -1,64 +1,7 @@
 import { Link } from "react-router-dom";
 import { dataMiniNav } from "../Interfaces/dataMiniNav";
-import urlBase from "../../../config/index";
-import CloseIcon from "@mui/icons-material/Close";
-import React from "react";
-import axios from "axios";
-import { Alert } from "@mui/material";
 
 export default function Footer() {
-  const [name, setName] = React.useState("");
-  const [mail, setMail] = React.useState("miyazomomayisam@gmail.com");
-  const [asunto, setAsunto] = React.useState("");
-  const [consulta, setConsulta] = React.useState("");
-  const [mssg, setMssg] = React.useState<boolean>(false);
-  const [mssgText, setMssgText] = React.useState<any>("");
-  const [mailto, setMailto] = React.useState<any>("");
-
-  const sendMail = (e: any) => {
-    e.preventDefault();
-    const body = {
-      to: mail,
-      subject: asunto,
-      name: name,
-      consulta: consulta,
-      text: "",
-      mailto: mailto,
-    };
-    const url = urlBase.pathBase + "/send-mail";
-    axios.post(url, body).then((resp) => {
-      console.log(resp.data);
-      if (resp.data.status === "000") {
-        setMssg(true);
-        setMssgText(resp.data.message);
-        reset();
-        setTimeout(() => {
-          setMssg(false);
-        }, 1800);
-      }
-    });
-  };
-
-  const reset = () => {
-    const emailForm = document.getElementById("emailForm") as HTMLFormElement | null;
-    if (emailForm) {
-      emailForm.reset();
-    }
-  };
-
-  const snackAlert = () => {
-    return (
-      <Alert
-        variant="filled"
-        severity="success"
-        sx={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}
-      >
-        {mssgText}
-        <CloseIcon onClick={() => setMssg(false)} />
-      </Alert>
-    );
-  };
-
   return (
     <>
       <div className="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
@@ -78,7 +21,7 @@ export default function Footer() {
 
           <div className="col-lg-8 col-md-12">
             <div className="row">
-              <div className="col-md-4 mb-5">
+              <div className="col-md-6 mb-5">
                 <h5 className="text-primary mb-4">Ubicanos</h5>
                 <p><i className="fa fa-map-marker-alt mr-2"></i>Callao</p>
                 <p><i className="fa fa-phone-alt mr-2"></i>+51 981557865</p>
@@ -101,7 +44,7 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div className="col-md-3 mb-5">
+              <div className="col-md-6 mb-5">
                 <h5 className="text-primary mb-4">Doname</h5>
                 <div className="d-flex flex-column justify-content-start">
                   <span className="text-white mb-2">
@@ -124,58 +67,6 @@ export default function Footer() {
                     <i className="fa-solid fa-credit-card mr-2"></i>Interbank
                   </span>
                 </div>
-              </div>
-
-              <div className="col-md-5 mb-5">
-                <h5 className="text-primary mb-4">Contactanos</h5>
-                {mssg === true ? snackAlert() : null}
-
-                <form action="" id="emailForm">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control border-0"
-                      placeholder="Ingresa tu nombre"
-                      onChange={(e: any) => setName(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control border-0"
-                      placeholder="Ingresa asunto"
-                      onChange={(e: any) => setAsunto(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control border-0"
-                      placeholder="Ingresa tu correo"
-                      onChange={(e: any) => setMailto(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <textarea
-                      className="form-control border-0"
-                      placeholder="Ingresa tu duda o consulta"
-                      onChange={(e: any) => setConsulta(e.target.value)}
-                    />
-                  </div>
-
-                  <div>
-                    <button
-                      className="btn btn-lg btn-primary btn-block border-0"
-                      type="submit"
-                      onClick={(e) => sendMail(e)}
-                    >
-                      Enviar
-                    </button>
-                  </div>
-                </form>
               </div>
 
             </div>
