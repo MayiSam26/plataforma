@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="col-lg-8 col-md-12">
             <div className="row">
               <div className="col-md-6 mb-5">
-                <h5 className="text-primary mb-4">Ubicanos</h5>
+                <h5 className="text-primary mb-4">Ubícanos</h5>
                 <p><i className="fa fa-map-marker-alt mr-2"></i>Callao</p>
                 <p><i className="fa fa-phone-alt mr-2"></i>+51 981557865</p>
                 <p style={{ overflowWrap: "anywhere" }}>

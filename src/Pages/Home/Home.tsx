@@ -60,7 +60,7 @@ export default function Home() {
         <div className="container">
           <div className="py-5 d-flex justify-content-center">
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
-              <h4 className="text-secondary mb-3 text-center">¿Comó puedes ayudar?</h4>
+              <h4 className="text-secondary mb-3 text-center">¿Cómo puedes ayudar?</h4>
               <h1 className="display-4 mb-4 text-center">
                 Colitas<span className="text-primary"> & Amor</span>
               </h1>
