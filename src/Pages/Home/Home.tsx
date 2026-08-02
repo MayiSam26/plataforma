@@ -1,5 +1,4 @@
 import { Fragment } from "react/jsx-runtime";
-import Nav from "./Component/Nav";
 import { Link } from "react-router-dom";
 import Header from "./Component/Header";
 import Hero from "./Component/Hero";
@@ -53,33 +52,6 @@ export default function Home() {
   return (
     <Fragment>
       <MiniNav />
-
-      {/* ✅ TOP: LOGO + BLOQUE INFO (RESPONSIVE y sin “espacio raro” en laptop) */}
-      <div className="container py-3">
-        <div className="row align-items-center">
-          <div className="col-lg-4 col-md-12 mb-3 mb-lg-0 d-flex justify-content-center justify-content-lg-start">
-            <Link
-              to="/"
-              className="navbar-brand d-flex"
-              style={{ alignItems: "center", textDecoration: "none" }}
-            >
-              <img src="/img/logocito.png" style={{ width: "60px" }} />
-              <div style={{ marginLeft: 10 }}>
-                <div style={{ fontSize: 14, color: "#111" }}>Refugio</div>
-                <div style={{ fontSize: 22, fontWeight: 800, lineHeight: "18px" }}>
-                  <span className="text-primary">Colitas</span> & Amor
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          {/* ESTE ES TU COMPONENTE Nav.tsx */}
-          <div className="col-lg-8 col-md-12">
-            <Nav />
-          </div>
-        </div>
-      </div>
-
       <Header />
       <Hero />
 
@@ -143,14 +115,14 @@ export default function Home() {
 
           <div className="col-lg-5">
             <div className="row px-3">
-              <div className="col-12 p-0">
-                <img className="img-fluid w-100" src="img/somos-10.png" alt="" />
+              <div className="col-12 p-2">
+                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-10.png" alt="" />
               </div>
-              <div className="col-6 p-0">
-                <img className="img-fluid w-100" src="img/somos-2.png" alt="" />
+              <div className="col-6 p-2">
+                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-2.png" alt="" />
               </div>
-              <div className="col-6 p-0">
-                <img className="img-fluid w-100" src="img/somos-3.png" alt="" />
+              <div className="col-6 p-2">
+                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-3.png" alt="" />
               </div>
             </div>
           </div>
@@ -211,7 +183,7 @@ export default function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-5">
-              <img className="img-fluid w-100" src="img/adoptante.png" alt="" />
+              <img className="img-fluid w-100 img-rounded-shadow" src="img/adoptante.png" alt="" />
             </div>
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
               <h4 className="text-secondary mb-3">¿Quiere adoptar?</h4>
@@ -221,26 +193,26 @@ export default function Home() {
               <p className="mb-4">Algunos requisitos para adoptar una colita son:</p>
 
               <div className="row py-2">
-                <div className="col-6">
-                  <div className="d-flex align-items-center mb-4">
+                <div className="col-sm-6 mb-3">
+                  <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-cat font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Ser mayor de edad</h5>
                   </div>
                 </div>
-                <div className="col-6">
-                  <div className="d-flex align-items-center mb-4">
+                <div className="col-sm-6 mb-3">
+                  <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-doctor font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Cuidado y compromiso</h5>
                   </div>
                 </div>
-                <div className="col-6">
-                  <div className="d-flex align-items-center">
+                <div className="col-sm-6 mb-3">
+                  <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-care font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Paciencia y amor</h5>
                   </div>
                 </div>
-                <div className="col-6">
-                  <div className="d-flex align-items-center">
+                <div className="col-sm-6 mb-3">
+                  <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-dog font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Ficha de adopción</h5>
                   </div>
@@ -272,13 +244,17 @@ export default function Home() {
             "/img/testimonio6.png",
           ].map((src, idx) => (
             <div key={idx} className="col-lg-4 col-md-6 col-12 mb-4">
-              <img
-                src={src}
-                className="img-fluid"
-                style={{ maxHeight: 220, objectFit: "contain" }}
+              <div
+                className="achievement-frame"
                 data-aos={idx % 2 === 0 ? "fade-up" : undefined}
                 data-aos-duration="2000"
-              />
+              >
+                <img
+                  src={src}
+                  className="img-fluid"
+                  style={{ maxHeight: 220, objectFit: "contain", width: "100%" }}
+                />
+              </div>
             </div>
           ))}
         </div>

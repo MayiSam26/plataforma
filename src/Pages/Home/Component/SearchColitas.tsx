@@ -115,10 +115,11 @@ export default function FiltroAnimales({
 
             <Button
               style={{
-                backgroundColor: "#61BF74",
+                backgroundColor: "#3F9E5C",
                 color: "white",
-                borderRadius: "20px",
-                fontFamily: "Poppins, cursive",
+                borderRadius: "999px",
+                fontFamily: "Nunito, sans-serif",
+                fontWeight: 700,
                 textTransform: "capitalize",
                 fontSize: "14px",
                 width: "200px",

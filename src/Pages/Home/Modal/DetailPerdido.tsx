@@ -7,23 +7,81 @@ import {
   Divider,
   IconButton,
   CircularProgress,
+  Button,
+  TextField,
+  Alert,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import PetsIcon from "@mui/icons-material/Pets";
+import React from "react";
 import moment from "moment";
 import "moment/locale/es";
+import axios from "axios";
 import urlBase from "../../../config/index";
 
 moment.locale("es");
+
+const initialForm = {
+  Nombre: "",
+  Apellido: "",
+  Dni: "",
+  Direccion: "",
+  telefono: "",
+  Motivo: "",
+};
 
 export default function CardDetalleAnimal({
   colitasDetalle,
   setOpenModa,
   loading,
 }: any) {
+  const [showForm, setShowForm] = React.useState(false);
+  const [form, setForm] = React.useState(initialForm);
+  const [sending, setSending] = React.useState(false);
+  const [result, setResult] = React.useState<{ ok: boolean; message: string } | null>(null);
+
   const buildImgUrl = (base: string, foto: string) => {
     const cleanBase = base.replace(/\/+$/, "");
     const cleanFoto = (foto || "").replace(/^\/+/, "").replace(/\\/g, "/");
     return `${cleanBase}/${encodeURI(cleanFoto)}`;
+  };
+
+  const handleChange = (field: keyof typeof initialForm) => (e: any) => {
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!/^\d{8}$/.test(form.Dni)) {
+      setResult({ ok: false, message: "El DNI debe tener 8 dígitos numéricos." });
+      return;
+    }
+
+    setSending(true);
+    setResult(null);
+
+    const url = urlBase.pathBase + "adopciones/solicitar";
+    try {
+      const response = await axios.post(url, {
+        ...form,
+        idanimal: colitasDetalle?.idanimal,
+      });
+      const { data } = response;
+      if (data.code === "000") {
+        setResult({ ok: true, message: data.message });
+        setForm(initialForm);
+      } else {
+        setResult({ ok: false, message: data.message });
+      }
+    } catch (error: any) {
+      const message =
+        error?.response?.data?.message ||
+        "No se pudo enviar tu solicitud. Intenta nuevamente.";
+      setResult({ ok: false, message });
+    } finally {
+      setSending(false);
+    }
   };
 
   if (loading || !colitasDetalle) {
@@ -75,6 +133,7 @@ export default function CardDetalleAnimal({
   }
 
   const imageUrl = buildImgUrl(urlBase.pathBase, colitasDetalle?.foto);
+  const disponible = colitasDetalle?.estado === "En refugio";
 
   return (
     <Card
@@ -82,9 +141,10 @@ export default function CardDetalleAnimal({
         width: "100%",
         maxWidth: { xs: "92vw", sm: 700 },
         mx: "auto",
+        maxHeight: "90vh",
+        overflowY: "auto",
         boxShadow: 4,
         borderRadius: 3,
-        overflow: "hidden",
       }}
     >
       <Box
@@ -163,12 +223,148 @@ export default function CardDetalleAnimal({
           </span>
         </Typography>
 
-        <Typography sx={{ mb: 1 }}>
+        <Typography sx={{ mb: 3 }}>
           <strong>Fecha Rescatado:</strong>{" "}
           <span style={{ fontWeight: 400 }}>
             {moment(colitasDetalle?.Fecha_Ingreso).format("LL")}
           </span>
         </Typography>
+
+        {!disponible && (
+          <Alert severity="info">
+            {colitasDetalle?.nombre} ya tiene un proceso de adopción en curso
+            o ya fue adoptado. ¡Gracias por tu interés!
+          </Alert>
+        )}
+
+        {disponible && result?.ok && <Alert severity="success">{result.message}</Alert>}
+
+        {disponible && !result?.ok && !showForm && (
+          <Button
+            fullWidth
+            variant="contained"
+            startIcon={<PetsIcon />}
+            onClick={() => setShowForm(true)}
+            sx={{
+              background: "#ED6436",
+              borderRadius: "999px",
+              py: 1.2,
+              fontWeight: 700,
+              textTransform: "capitalize",
+              "&:hover": { background: "#C74E23" },
+            }}
+          >
+            Quiero adoptar a {colitasDetalle?.nombre}
+          </Button>
+        )}
+
+        {disponible && showForm && !result?.ok && (
+          <Box component="form" onSubmit={handleSubmit}>
+            <Typography sx={{ mb: 2, fontWeight: 700 }}>
+              Cuéntanos quién eres para poder contactarte
+            </Typography>
+
+            {result && !result.ok && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {result.message}
+              </Alert>
+            )}
+
+            <Box display="flex" flexDirection={{ xs: "column", sm: "row" }} gap={2} mb={2}>
+              <TextField
+                label="Nombres"
+                size="small"
+                fullWidth
+                required
+                value={form.Nombre}
+                onChange={handleChange("Nombre")}
+              />
+              <TextField
+                label="Apellidos"
+                size="small"
+                fullWidth
+                required
+                value={form.Apellido}
+                onChange={handleChange("Apellido")}
+              />
+            </Box>
+
+            <Box display="flex" flexDirection={{ xs: "column", sm: "row" }} gap={2} mb={2}>
+              <TextField
+                label="DNI"
+                size="small"
+                fullWidth
+                required
+                helperText="8 dígitos"
+                inputProps={{ maxLength: 8, inputMode: "numeric" }}
+                value={form.Dni}
+                onChange={(e) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    Dni: e.target.value.replace(/\D/g, "").slice(0, 8),
+                  }))
+                }
+              />
+              <TextField
+                label="Teléfono"
+                size="small"
+                fullWidth
+                required
+                value={form.telefono}
+                onChange={handleChange("telefono")}
+              />
+            </Box>
+
+            <TextField
+              label="Dirección"
+              size="small"
+              fullWidth
+              required
+              sx={{ mb: 2 }}
+              value={form.Direccion}
+              onChange={handleChange("Direccion")}
+            />
+
+            <TextField
+              label="¿Por qué quieres adoptarlo?"
+              size="small"
+              fullWidth
+              required
+              multiline
+              minRows={3}
+              sx={{ mb: 2 }}
+              value={form.Motivo}
+              onChange={handleChange("Motivo")}
+            />
+
+            <Box display="flex" gap={2}>
+              <Button
+                fullWidth
+                variant="outlined"
+                onClick={() => setShowForm(false)}
+                sx={{ borderRadius: "999px", textTransform: "capitalize" }}
+                disabled={sending}
+              >
+                Cancelar
+              </Button>
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                disabled={sending}
+                sx={{
+                  background: "#ED6436",
+                  borderRadius: "999px",
+                  fontWeight: 700,
+                  textTransform: "capitalize",
+                  "&:hover": { background: "#C74E23" },
+                }}
+              >
+                {sending ? "Enviando..." : "Enviar solicitud"}
+              </Button>
+            </Box>
+          </Box>
+        )}
       </CardContent>
     </Card>
   );

@@ -1,0 +1,431 @@
+/* =========================================================
+   Colitas y Amor — capa de diseño
+   Se carga DESPUÉS de App.css (Bootstrap 4 compilado) para
+   poder sobreescribir sin pelear con especificidad.
+   ========================================================= */
+
+:root {
+  /* Paleta */
+  --cya-primary: #E4602F;
+  --cya-primary-dark: #C74E23;
+  --cya-primary-light: #FDEEE6;
+  --cya-secondary: #3F9E5C;
+  --cya-secondary-dark: #2F7D46;
+  --cya-secondary-light: #E7F5EA;
+  --cya-accent: #F4A731;
+  --cya-dark: #24282C;
+  --cya-text: #3A3F44;
+  --cya-text-muted: #767C82;
+  --cya-bg-alt: #FBF7F2;
+  --cya-border: #ECE4DA;
+  --cya-white: #FFFFFF;
+
+  /* Tipografía */
+  --cya-font-heading: 'Nunito', sans-serif;
+  --cya-font-body: 'Nunito Sans', sans-serif;
+
+  /* Radios y sombras */
+  --cya-radius-sm: 10px;
+  --cya-radius-md: 16px;
+  --cya-radius-lg: 24px;
+  --cya-shadow-sm: 0 2px 10px rgba(36, 40, 44, 0.06);
+  --cya-shadow-md: 0 10px 30px rgba(36, 40, 44, 0.10);
+  --cya-shadow-lg: 0 20px 45px rgba(36, 40, 44, 0.14);
+}
+
+/* ---------- Base ---------- */
+
+body {
+  font-family: var(--cya-font-body);
+  color: var(--cya-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.display-1, .display-2, .display-3, .display-4 {
+  font-family: var(--cya-font-heading);
+  color: var(--cya-dark);
+}
+
+a { transition: color .2s ease; }
+
+::selection {
+  background: var(--cya-primary-light);
+  color: var(--cya-primary-dark);
+}
+
+.display-4 {
+  font-weight: 800;
+  font-size: 2.4rem;
+}
+@media (min-width: 768px) {
+  .display-4 { font-size: 3rem; }
+}
+
+/* Patrón de "kicker" usado en todo el sitio: <h4 className="text-secondary"> */
+h4.text-secondary {
+  font-size: .95rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cya-secondary-dark) !important;
+}
+
+section, .container > .row, #nosotros, #donar, #adoptar {
+  scroll-margin-top: 90px;
+}
+
+/* ---------- Colores Bootstrap sobreescritos ---------- */
+
+.text-primary { color: var(--cya-primary) !important; }
+.text-secondary { color: var(--cya-secondary-dark) !important; }
+.bg-primary { background-color: var(--cya-primary) !important; }
+.bg-secondary { background-color: var(--cya-secondary) !important; }
+.bg-light { background-color: var(--cya-bg-alt) !important; }
+.bg-dark { background-color: var(--cya-dark) !important; }
+
+.btn {
+  border-radius: 999px;
+  font-weight: 700;
+  padding: .7rem 1.6rem;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background-color: var(--cya-primary);
+  border-color: var(--cya-primary);
+  box-shadow: var(--cya-shadow-sm);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--cya-primary-dark) !important;
+  border-color: var(--cya-primary-dark) !important;
+  box-shadow: var(--cya-shadow-md);
+}
+
+.btn-secondary {
+  background-color: var(--cya-secondary);
+  border-color: var(--cya-secondary);
+  box-shadow: var(--cya-shadow-sm);
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--cya-secondary-dark) !important;
+  border-color: var(--cya-secondary-dark) !important;
+  box-shadow: var(--cya-shadow-md);
+}
+
+.btn-outline-light:hover { color: var(--cya-dark); }
+
+/* ---------- Barra superior de contacto (solo desktop) ---------- */
+
+.cya-topbar {
+  background: var(--cya-secondary-dark);
+  padding: .5rem 0;
+}
+.cya-topbar__item {
+  color: var(--cya-white);
+  font-size: .82rem;
+  font-weight: 600;
+  padding: 0 1rem 0 0;
+  margin-right: 1rem;
+}
+.cya-topbar__label {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  opacity: .85;
+  font-size: .74rem;
+}
+.cya-topbar__divider { border-right: 1px solid rgba(255, 255, 255, .25); }
+.cya-topbar__social {
+  color: var(--cya-white);
+  opacity: .85;
+  margin-left: .9rem;
+  font-size: .95rem;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.cya-topbar__social:hover {
+  opacity: 1;
+  color: var(--cya-white);
+  transform: translateY(-2px);
+}
+
+/* ---------- Header principal ---------- */
+
+.cya-header .navbar-brand { margin-right: 1.5rem; }
+
+.navbar-dark .navbar-nav .nav-link {
+  font-weight: 700;
+  padding: .9rem 1.1rem !important;
+  transition: color .2s ease;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--cya-accent) !important;
+}
+
+/* ---------- Hero ---------- */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,20,20,.15) 0%, rgba(20,20,20,.55) 75%, rgba(20,20,20,.72) 100%);
+}
+.carousel-caption {
+  right: 0;
+  left: 0;
+}
+
+/* ---------- Tarjetas de "¿Cómo puedes ayudar?" ---------- */
+
+.info-card {
+  background: var(--cya-white);
+  border: 1px solid var(--cya-border);
+  border-radius: var(--cya-radius-md);
+  padding: 1.5rem;
+  height: 100%;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cya-shadow-md);
+  border-color: transparent;
+}
+.info-card .icon-badge {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: 50%;
+  background: var(--cya-secondary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--cya-secondary-dark) !important;
+  margin: 0 1rem 0 0;
+}
+.info-card p {
+  color: var(--cya-text-muted);
+  font-size: .92rem;
+  margin-bottom: 0;
+}
+
+/* ---------- Tarjetas de mascotas (pet-card) ---------- */
+
+.pet-card {
+  border-radius: var(--cya-radius-md) !important;
+  box-shadow: var(--cya-shadow-sm);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.pet-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--cya-shadow-lg);
+}
+.pet-card .pet-card__img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.pet-card .pet-card__img-wrap img {
+  transition: transform .4s ease;
+}
+.pet-card:hover .pet-card__img-wrap img {
+  transform: scale(1.08);
+}
+.pet-card .pet-card__badge {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.2rem .9rem .8rem;
+  background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,0) 100%);
+}
+.pet-card .pet-card__badge h5 {
+  color: var(--cya-white);
+  font-weight: 800;
+  margin: 0;
+}
+
+/* ---------- Donación (antes "plan") ---------- */
+
+.donation-card {
+  background: var(--cya-white);
+  border: 1px solid var(--cya-border);
+  border-radius: var(--cya-radius-md);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  height: 100%;
+  box-shadow: var(--cya-shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.donation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cya-shadow-md);
+}
+.donation-card__img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--cya-secondary-light);
+  margin-bottom: 1rem;
+}
+.donation-card__method {
+  font-weight: 800;
+  color: var(--cya-dark);
+  margin-bottom: .75rem;
+}
+.donation-card__detail {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--cya-text-muted);
+  font-weight: 600;
+  word-break: break-word;
+}
+.donation-card__detail li {
+  padding: .3rem 0;
+  border-top: 1px dashed var(--cya-border);
+}
+.donation-card__detail li:first-child { border-top: 0; }
+.donation-card__detail a { color: var(--cya-secondary-dark); }
+
+/* ---------- Requisitos de adopción ---------- */
+
+.requirement-badge {
+  background: var(--cya-white);
+  border: 1px solid var(--cya-border);
+  border-radius: var(--cya-radius-sm);
+  padding: .9rem 1rem;
+  height: 100%;
+}
+.requirement-badge h1 {
+  font-size: 1.9rem !important;
+  margin-right: .75rem !important;
+}
+
+/* ---------- Logros / testimonial ---------- */
+
+.achievement-frame {
+  background: var(--cya-white);
+  border: 1px solid var(--cya-border);
+  border-radius: var(--cya-radius-md);
+  padding: 1rem;
+  box-shadow: var(--cya-shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.achievement-frame:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--cya-shadow-md);
+}
+
+/* ---------- Imágenes con marco ---------- */
+
+.img-rounded-shadow {
+  border-radius: var(--cya-radius-md);
+  box-shadow: var(--cya-shadow-md);
+}
+
+/* ---------- Footer ---------- */
+
+footer, .footer-cya {
+  background: var(--cya-dark) !important;
+}
+
+/* ---------- Pantalla de carga ---------- */
+
+.cya-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #FBF7F2 0%, #FDEEE6 100%);
+  transition: opacity .6s ease, visibility .6s ease;
+}
+.cya-loading-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cya-loading-screen__bone-wrap {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cya-bounce 1s ease-in-out infinite;
+}
+.cya-loading-screen__bone {
+  animation: cya-spin 1.4s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes cya-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes cya-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+.cya-loading-screen__shadow {
+  width: 46px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(36, 40, 44, .15);
+  margin-top: 8px;
+  animation: cya-shadow 1s ease-in-out infinite;
+}
+@keyframes cya-shadow {
+  0%, 100% { transform: scale(1); opacity: .5; }
+  50% { transform: scale(.6); opacity: .25; }
+}
+
+.cya-loading-screen__brand {
+  margin-top: 1.75rem;
+  font-family: var(--cya-font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--cya-dark);
+  text-align: center;
+  padding: 0 1.5rem;
+  opacity: 0;
+  animation: cya-fadein .6s ease forwards .3s;
+}
+@media (min-width: 480px) {
+  .cya-loading-screen__brand { font-size: 1.5rem; }
+}
+.cya-loading-screen__brand span { color: var(--cya-primary); }
+
+.cya-loading-screen__dots {
+  display: flex;
+  gap: 6px;
+  margin-top: .9rem;
+}
+.cya-loading-screen__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cya-secondary);
+  animation: cya-dot 1s ease-in-out infinite;
+}
+.cya-loading-screen__dots span:nth-child(2) { animation-delay: .15s; }
+.cya-loading-screen__dots span:nth-child(3) { animation-delay: .3s; }
+@keyframes cya-dot {
+  0%, 100% { transform: translateY(0); opacity: .4; }
+  50% { transform: translateY(-5px); opacity: 1; }
+}
+
+@keyframes cya-fadein {
+  to { opacity: 1; }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 767px) {
+  .btn { padding: .65rem 1.3rem; }
+  .info-card { padding: 1.1rem; }
+}

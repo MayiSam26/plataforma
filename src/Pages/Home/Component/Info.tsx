@@ -1,52 +1,44 @@
 import { Fragment } from "react/jsx-runtime";
 
-export default function Info(){
-    return(
-        <Fragment>
-            <div className="row py-2 m-auto">
-                                <div className="col-sm-6">
-                                    <div className="d-flex flex-column">
-                                        <div className="d-flex align-items-center mb-2">
-                                            <h1 className="flaticon-house font-weight-normal text-secondary m-0 mr-3"></h1>
-                                            <h5 className="text-truncate m-0">Adopciones</h5>
-                                        </div>
-                                        <p>
-                                            Dar un hogar a quienes nos necesitan.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="d-flex flex-column">
-                                        <div className="d-flex align-items-center mb-2">
-                                            <h1 className="flaticon-food font-weight-normal text-secondary m-0 mr-3"></h1>
-                                            <h5 className="text-truncate m-0">Donaciones</h5>
-                                        </div>
-                                        <p>
-                                            Tus generosidad salva vidas, ayudanos a seguir con nuestra metas!!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="d-flex flex-column">
-                                        <div className="d-flex align-items-center mb-2">
-                                            <h1 className="flaticon-grooming font-weight-normal text-secondary m-0 mr-3"></h1>
-                                            <h5 className="text-truncate m-0">Apadrinamiento</h5>
-                                        </div>
-                                        <p className="m-0">
-                                            Brinda amor distancia,transforma un dia comun en una historia extraordinaria
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-sm-6">
-                                    <div className="d-flex flex-column">
-                                        <div className="d-flex align-items-center mb-2">
-                                            <h1 className="flaticon-toy font-weight-normal text-secondary m-0 mr-3"></h1>
-                                            <h5 className="text-truncate m-0">Busqueda</h5>
-                                        </div>
-                                        <p className="m-0"></p>
-                                    </div>
-                                </div>
-                            </div>
-        </Fragment>
-    )
+const items = [
+  {
+    icon: "flaticon-house",
+    title: "Adopciones",
+    text: "Dar un hogar a quienes nos necesitan.",
+  },
+  {
+    icon: "flaticon-food",
+    title: "Donaciones",
+    text: "Tu generosidad salva vidas, ayúdanos a seguir con nuestras metas.",
+  },
+  {
+    icon: "flaticon-grooming",
+    title: "Apadrinamiento",
+    text: "Brinda amor a distancia, transforma un día común en una historia extraordinaria.",
+  },
+  {
+    icon: "flaticon-toy",
+    title: "Búsqueda",
+    text: "Ayudamos a reunir a mascotas perdidas con sus familias.",
+  },
+];
+
+export default function Info() {
+  return (
+    <Fragment>
+      <div className="row py-2 m-auto">
+        {items.map((item) => (
+          <div className="col-sm-6 mb-4" key={item.title}>
+            <div className="info-card d-flex align-items-start">
+              <span className={`icon-badge ${item.icon}`}></span>
+              <div>
+                <h5 className="mb-2">{item.title}</h5>
+                <p>{item.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Fragment>
+  );
 }

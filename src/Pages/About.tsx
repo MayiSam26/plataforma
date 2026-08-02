@@ -1,8 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 import MiniNav from "./Home/Component/MiniNav";
 import Header from "./Home/Component/Header";
-import Nav from "./Home/Component/Nav";
-import { Link } from "react-router-dom";
 import Footer from "./Home/Component/Footer";
 import Perdidos from "./Home/Component/Perdidos";
 import urlBase from "../config/index";
@@ -61,27 +59,6 @@ export default function About() {
   return (
     <Fragment>
       <MiniNav />
-      <div className="container">
-  <div className="row py-3 align-items-center">
-          <div className="col-lg-4">
-            <Link
-              to="/"
-              className="navbar-brand d-none d-flex"
-              style={{
-                alignItems: "center",
-              }}
-            >
-              <img src="/img/logocito.png" style={{ width: "60px" }} />
-              <h3 className="m-0 display-5 text-capitalize" style={{ lineHeight: "0px" }}>
-                <h6>Refugio</h6>
-                <span className="text-primary">Colitas</span> & Amor
-              </h3>
-            </Link>
-          </div>
-          <Nav />
-        </div>
-      </div>
-
       <Header />
 
       <div className="container-fluid bg-light mt-5 py-3">

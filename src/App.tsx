@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
+import "./theme.css";
 import { RoutesApp } from "./Routes/Route";
+import LoadingScreen from "./Components/LoadingScreen";
 
 function App() {
 
@@ -36,7 +38,12 @@ function App() {
     };
   }, []);
 
-  return <RoutesApp />;
+  return (
+    <>
+      <LoadingScreen />
+      <RoutesApp />
+    </>
+  );
 }
 
 export default App;

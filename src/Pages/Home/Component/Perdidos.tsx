@@ -111,16 +111,15 @@ export default function Perdidos({ perdidosRecientes }: props) {
             key={item.idanimal}
             onClick={() => openModalDetail(item.idanimal)}
           >
-            <div className="team card position-relative overflow-hidden border-0 mb-4">
-              <img
-                className="card-img-top"
-                style={{ height: "250px", width: "100%", objectFit: "cover" }}
-                src={buildImgUrl(urlBase.pathBase, item.foto)}
-                alt={item.nombre}
-              />
-
-              <div className="card-body text-center p-0">
-                <div className="team-text d-flex flex-column justify-content-center bg-light">
+            <div className="pet-card card position-relative overflow-hidden border-0 mb-4">
+              <div className="pet-card__img-wrap">
+                <img
+                  className="card-img-top"
+                  style={{ height: "270px", width: "100%", objectFit: "cover" }}
+                  src={buildImgUrl(urlBase.pathBase, item.foto)}
+                  alt={item.nombre}
+                />
+                <div className="pet-card__badge">
                   <h5>{item.nombre}</h5>
                 </div>
               </div>

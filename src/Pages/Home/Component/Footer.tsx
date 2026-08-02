@@ -45,28 +45,14 @@ export default function Footer() {
               </div>
 
               <div className="col-md-6 mb-5">
-                <h5 className="text-primary mb-4">Doname</h5>
-                <div className="d-flex flex-column justify-content-start">
-                  <span className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    <i className="fab fa-paypal mr-2"></i>Paypal
-                  </span>
-
-                  <span className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    <i className="fa-solid fa-qrcode mr-2"></i>Yape
-                  </span>
-
-                  <span className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    <i className="fa-solid fa-credit-card mr-2"></i>BCP
-                  </span>
-
-                  <span className="text-white mb-2">
-                    <i className="fa fa-angle-right mr-2"></i>
-                    <i className="fa-solid fa-credit-card mr-2"></i>Interbank
-                  </span>
-                </div>
+                <h5 className="text-primary mb-4">Dónanos</h5>
+                <p className="text-white-50 mb-3">
+                  Aceptamos Yape, Plin y Paypal. Revisa los datos completos en
+                  nuestra sección de donaciones.
+                </p>
+                <a href="#donar" className="btn btn-secondary btn-sm">
+                  Ver cómo donar
+                </a>
               </div>
 
             </div>

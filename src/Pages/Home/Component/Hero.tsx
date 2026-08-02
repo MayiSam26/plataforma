@@ -11,6 +11,7 @@ export default function Hero() {
               <div
                 key={index}
                 className={`carousel-item ${index === 0 ? "active" : ""}`}
+                style={{ position: "relative" }}
               >
                 <img
                   className="w-100"
@@ -23,6 +24,7 @@ export default function Hero() {
                     objectFit: "cover",
                   }}
                 />
+                <div className="hero-overlay"></div>
 
                 <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                   <div className="p-3 w-100" style={{ maxWidth: "900px" }}>
