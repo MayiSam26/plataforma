@@ -8,5 +8,6 @@ export const dataHeader : data[] = [
   { id: 1, name: "Inicio", path: "/" },
   { id: 2, name: "Nosotros", path: "#nosotros" },
   { id: 3, name: "Adopta", path: "#adoptar" },
-  { id: 4, name: "Contáctanos", path: "#contacto" },
+  { id: 4, name: "Noticias", path: "/noticias" },
+  { id: 5, name: "Contáctanos", path: "#contacto" },
 ];

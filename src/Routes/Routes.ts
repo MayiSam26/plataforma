@@ -1,5 +1,6 @@
 import About from "../Pages/About";
 import Home from "../Pages/Home/Home";
+import Noticias from "../Pages/Noticias";
 
 type JXSComponent = () => JSX.Element;
 
@@ -22,5 +23,11 @@ export const routes: navigate[] = [
     path: "/colitas",
     Component: About, // si About es la página que lista todas las colitas, se queda
     name: "Colitas",
+  },
+  {
+    to: "noticias",
+    path: "/noticias",
+    Component: Noticias,
+    name: "Noticias",
   },
 ];
