@@ -60,14 +60,16 @@ export default function Home() {
         <div className="container">
           <div className="py-5 d-flex justify-content-center">
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
-              <h4 className="text-secondary mb-3 text-center">¿Cómo puedes ayudar?</h4>
-              <h1 className="display-4 mb-4 text-center">
-                Colitas<span className="text-primary"> & Amor</span>
-              </h1>
-              <p className="text-center">
-                Un refugio comprometido con el bienestar animal. Aquí, cada latido y aporte
-                es un gesto de amor hacia los peluditos necesitados.
-              </p>
+              <div data-aos="fade-up" data-aos-duration="700">
+                <h4 className="text-secondary mb-3 text-center">¿Cómo puedes ayudar?</h4>
+                <h1 className="display-4 mb-4 text-center">
+                  Colitas<span className="text-primary"> & Amor</span>
+                </h1>
+                <p className="text-center">
+                  Un refugio comprometido con el bienestar animal. Aquí, cada latido y aporte
+                  es un gesto de amor hacia los peluditos necesitados.
+                </p>
+              </div>
               <Info />
             </div>
           </div>
@@ -77,7 +79,7 @@ export default function Home() {
       {/* ✅ Nosotros */}
       <div className="container py-5" id="nosotros">
         <div className="row py-5">
-          <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5">
+          <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5" data-aos="fade-right" data-aos-duration="700">
             <h4 className="text-secondary mb-3">Quienes Somos</h4>
             <h1 className="display-4 mb-4">
               <span>Colitas</span> & <span className="text-primary">Amor</span>
@@ -113,7 +115,7 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="col-lg-5">
+          <div className="col-lg-5" data-aos="fade-left" data-aos-duration="700">
             <div className="row px-3">
               <div className="col-12 p-2">
                 <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-10.png" alt="" />
@@ -132,7 +134,7 @@ export default function Home() {
       {/* ✅ Donar */}
       <div className="container-fluid bg-light pt-5 pb-4" id="donar">
         <div className="container py-5">
-          <div className="d-flex flex-column text-center mb-5">
+          <div className="d-flex flex-column text-center mb-5" data-aos="fade-up" data-aos-duration="700">
             <h4 className="text-secondary mb-3">Apoya a</h4>
             <h1 className="display-4 m-0">
               Nuestro <span className="text-primary"> Refugio</span>
@@ -146,7 +148,7 @@ export default function Home() {
 
       {/* ✅ Adoptar */}
       <div className="container mt-5 pt-5 pb-3" id="adoptar">
-        <div className="d-flex flex-column text-center mb-5">
+        <div className="d-flex flex-column text-center mb-5" data-aos="fade-up" data-aos-duration="700">
           <h4 className="text-secondary mb-3">Ayúdanos a Adoptar</h4>
           <h1 className="display-4 m-0">
             Colitas <span className="text-primary">en Refugio</span>
@@ -182,7 +184,7 @@ export default function Home() {
       <div className="container-fluid bg-light pt-5 pb-4">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-5">
+            <div className="col-lg-5" data-aos="fade-right" data-aos-duration="700">
               <img className="img-fluid w-100 img-rounded-shadow" src="img/adoptante.png" alt="" />
             </div>
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
@@ -193,25 +195,25 @@ export default function Home() {
               <p className="mb-4">Algunos requisitos para adoptar una colita son:</p>
 
               <div className="row py-2">
-                <div className="col-sm-6 mb-3">
+                <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="0" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-cat font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Ser mayor de edad</h5>
                   </div>
                 </div>
-                <div className="col-sm-6 mb-3">
+                <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-doctor font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Cuidado y compromiso</h5>
                   </div>
                 </div>
-                <div className="col-sm-6 mb-3">
+                <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-care font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Paciencia y amor</h5>
                   </div>
                 </div>
-                <div className="col-sm-6 mb-3">
+                <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-dog font-weight-normal text-secondary m-0 mr-3"></h1>
                     <h5 className="text-truncate m-0">Ficha de adopción</h5>
@@ -226,7 +228,7 @@ export default function Home() {
 
       {/* ✅ Datos y Logros (ARREGLADO y centrado) */}
       <div className="container py-5">
-        <div className="text-center mb-5">
+        <div className="text-center mb-5" data-aos="fade-up" data-aos-duration="700">
           <h4 className="text-secondary mb-3">Testimonial</h4>
           <h1 className="display-4 m-0">
             Datos y <span className="text-primary">Logros</span>
@@ -246,8 +248,9 @@ export default function Home() {
             <div key={idx} className="col-lg-4 col-md-6 col-12 mb-4">
               <div
                 className="achievement-frame"
-                data-aos={idx % 2 === 0 ? "fade-up" : undefined}
-                data-aos-duration="2000"
+                data-aos="fade-up"
+                data-aos-delay={(idx % 3) * 100}
+                data-aos-duration="700"
               >
                 <img
                   src={src}

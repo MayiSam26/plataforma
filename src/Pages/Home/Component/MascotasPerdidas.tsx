@@ -61,14 +61,19 @@ export default function MascotasPerdidas({ perdidos }: props) {
 
   return (
     <Fragment>
-      {perdidos.map((item: any) => {
+      {perdidos.map((item: any, idx: number) => {
         return (
           <div
             className="col-lg-3 col-md-6"
             key={item.idmascotaperdida}
             onClick={() => openModalDetail(item)}
           >
-            <div className="pet-card card position-relative overflow-hidden border-0 mb-4">
+            <div
+              className="pet-card card position-relative overflow-hidden border-0 mb-4"
+              data-aos="fade-up"
+              data-aos-delay={(idx % 4) * 100}
+              data-aos-duration="700"
+            >
               <div className="pet-card__img-wrap">
                 <img
                   className="card-img-top"

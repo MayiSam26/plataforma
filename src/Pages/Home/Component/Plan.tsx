@@ -26,7 +26,7 @@ function renderDetail(text: string) {
 export default function Plan({ plan }: props) {
   return (
     <Fragment>
-      {plan.map((item: any) => {
+      {plan.map((item: any, idx: number) => {
         const { content } = item;
 
         const contentParse =
@@ -36,7 +36,12 @@ export default function Plan({ plan }: props) {
 
         return (
           <div className="col-lg-4 mb-4" key={item.idplanmensual}>
-            <div className="donation-card">
+            <div
+              className="donation-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+              data-aos-duration="700"
+            >
               <img
                 className="donation-card__img"
                 src={item.cantidad}

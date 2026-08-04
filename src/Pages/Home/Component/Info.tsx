@@ -27,9 +27,14 @@ export default function Info() {
   return (
     <Fragment>
       <div className="row py-2 m-auto">
-        {items.map((item) => (
+        {items.map((item, idx) => (
           <div className="col-sm-6 mb-4" key={item.title}>
-            <div className="info-card d-flex align-items-start">
+            <div
+              className="info-card d-flex align-items-start"
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+              data-aos-duration="700"
+            >
               <span className={`icon-badge ${item.icon}`}></span>
               <div>
                 <h5 className="mb-2">{item.title}</h5>

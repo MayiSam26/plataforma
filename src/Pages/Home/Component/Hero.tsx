@@ -1,24 +1,48 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { dataHero } from "../Interfaces/dataHero";
 
+const AUTOPLAY_MS = 5000;
+
 export default function Hero() {
+  const [active, setActive] = useState(0);
+  const paused = useRef(false);
+
+  // Autoplay real, controlado desde React: el data-ride="carousel" de
+  // Bootstrap solo arranca solo en el evento "load" de la página, que ya
+  // pasó antes de que React monte este div - por eso antes el carrusel se
+  // veía como una imagen fija hasta el primer click manual en una flecha.
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (paused.current) return;
+      setActive((prev) => (prev + 1) % dataHero.length);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goTo = (index: number) => {
+    setActive((index + dataHero.length) % dataHero.length);
+  };
+
   return (
     <Fragment>
       <div className="container-fluid p-0">
-        <div id="header-carousel" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            {dataHero.map((item: any, index: number) => (
+        <div
+          className="cya-hero"
+          onMouseEnter={() => (paused.current = true)}
+          onMouseLeave={() => (paused.current = false)}
+        >
+          <div className="cya-hero-track">
+            {dataHero.map((item, index) => (
               <div
-                key={index}
-                className={`carousel-item ${index === 0 ? "active" : ""}`}
-                style={{ position: "relative" }}
+                key={item.id}
+                className={`cya-hero-slide ${index === active ? "active" : ""}`}
+                aria-hidden={index !== active}
               >
                 <img
-                  className="w-100"
+                  className="cya-hero-slide__img"
                   src={item.urlimg}
-                  alt="Image"
+                  alt=""
                   style={{
-                    // ✅ Esto mejora muchísimo en móvil
                     height: "70vh",
                     minHeight: "360px",
                     objectFit: "cover",
@@ -26,13 +50,12 @@ export default function Hero() {
                 />
                 <div className="hero-overlay"></div>
 
-                <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                <div className="cya-hero-slide__caption d-flex flex-column align-items-center justify-content-center">
                   <div className="p-3 w-100" style={{ maxWidth: "900px" }}>
                     <h3 className="text-white mb-3 d-none d-sm-block">
                       {item.mainheader}
                     </h3>
 
-                    {/* ✅ quitamos display-3 y ponemos tamaños responsive */}
                     <h1
                       className="text-white mb-3"
                       style={{
@@ -48,7 +71,6 @@ export default function Hero() {
                       {item.mainfooter}
                     </h5>
 
-                    {/* ✅ Botones responsive: centrados + wrap */}
                     <div
                       className="d-flex flex-wrap justify-content-center"
                       style={{ gap: "12px" }}
@@ -88,10 +110,10 @@ export default function Hero() {
           </div>
 
           {/* CONTROLES DEL CARRUSEL */}
-          <a
-            className="carousel-control-prev"
-            href="#header-carousel"
-            data-slide="prev"
+          <button
+            type="button"
+            className="cya-hero-nav cya-hero-nav--prev"
+            onClick={() => goTo(active - 1)}
             aria-label="Anterior"
           >
             <div
@@ -100,12 +122,12 @@ export default function Hero() {
             >
               <span className="carousel-control-prev-icon mb-n2"></span>
             </div>
-          </a>
+          </button>
 
-          <a
-            className="carousel-control-next"
-            href="#header-carousel"
-            data-slide="next"
+          <button
+            type="button"
+            className="cya-hero-nav cya-hero-nav--next"
+            onClick={() => goTo(active + 1)}
             aria-label="Siguiente"
           >
             <div
@@ -114,7 +136,20 @@ export default function Hero() {
             >
               <span className="carousel-control-next-icon mb-n2"></span>
             </div>
-          </a>
+          </button>
+
+          {/* INDICADORES */}
+          <div className="cya-hero-dots">
+            {dataHero.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`cya-hero-dot ${index === active ? "active" : ""}`}
+                aria-label={`Ir a la diapositiva ${index + 1}`}
+                onClick={() => goTo(index)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </Fragment>
