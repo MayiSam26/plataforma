@@ -4,6 +4,7 @@ import Header from "./Component/Header";
 import Hero from "./Component/Hero";
 import Info from "./Component/Info";
 import Plan from "./Component/Plan";
+import ContactoDonacion from "./Component/ContactoDonacion";
 import MiniNav from "./Component/MiniNav";
 import Perdidos from "./Component/Perdidos";
 import React, { useEffect } from "react";
@@ -143,6 +144,7 @@ export default function Home() {
           <div className="row">
             <Plan plan={plan} />
           </div>
+          <ContactoDonacion />
         </div>
       </div>
 
