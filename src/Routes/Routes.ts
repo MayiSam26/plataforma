@@ -1,6 +1,7 @@
 import About from "../Pages/About";
 import Home from "../Pages/Home/Home";
 import Noticias from "../Pages/Noticias";
+import Perdidos from "../Pages/Perdidos";
 
 type JXSComponent = () => JSX.Element;
 
@@ -29,5 +30,11 @@ export const routes: navigate[] = [
     path: "/noticias",
     Component: Noticias,
     name: "Noticias",
+  },
+  {
+    to: "perdidos",
+    path: "/perdidos",
+    Component: Perdidos,
+    name: "Mascotas Perdidas",
   },
 ];
