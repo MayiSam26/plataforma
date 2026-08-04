@@ -79,7 +79,7 @@ export default function Home() {
       {/* ✅ Nosotros */}
       <div className="container py-5" id="nosotros">
         <div className="row py-5">
-          <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5" data-aos="fade-right" data-aos-duration="700">
+          <div className="col-lg-7 pb-5 pb-lg-0 px-3 px-lg-5" data-aos="fade-up" data-aos-duration="700">
             <h4 className="text-secondary mb-3">Quienes Somos</h4>
             <h1 className="display-4 mb-4">
               <span>Colitas</span> & <span className="text-primary">Amor</span>
@@ -115,7 +115,7 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="col-lg-5" data-aos="fade-left" data-aos-duration="700">
+          <div className="col-lg-5" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
             <div className="row px-3">
               <div className="col-12 p-2">
                 <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-10.png" alt="" />
@@ -184,7 +184,7 @@ export default function Home() {
       <div className="container-fluid bg-light pt-5 pb-4">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-5" data-aos="fade-right" data-aos-duration="700">
+            <div className="col-lg-5" data-aos="fade-up" data-aos-duration="700">
               <img className="img-fluid w-100 img-rounded-shadow" src="img/adoptante.png" alt="" />
             </div>
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
@@ -198,25 +198,25 @@ export default function Home() {
                 <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="0" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-cat font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Ser mayor de edad</h5>
+                    <h5 className="m-0">Ser mayor de edad</h5>
                   </div>
                 </div>
                 <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-doctor font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Cuidado y compromiso</h5>
+                    <h5 className="m-0">Cuidado y compromiso</h5>
                   </div>
                 </div>
                 <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-care font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Paciencia y amor</h5>
+                    <h5 className="m-0">Paciencia y amor</h5>
                   </div>
                 </div>
                 <div className="col-sm-6 mb-3" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
                   <div className="requirement-badge d-flex align-items-center">
                     <h1 className="flaticon-dog font-weight-normal text-secondary m-0 mr-3"></h1>
-                    <h5 className="text-truncate m-0">Ficha de adopción</h5>
+                    <h5 className="m-0">Ficha de adopción</h5>
                   </div>
                 </div>
               </div>

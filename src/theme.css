@@ -35,18 +35,10 @@
 
 /* ---------- Base ---------- */
 
-/* Las animaciones AOS fade-left/fade-right desplazan sus elementos fuera
-   del viewport antes de dispararse, lo que generaba un scroll horizontal
-   fantasma; hay que cortarlo en <html>, no solo en <body>. */
-html {
-  overflow-x: hidden;
-}
-
 body {
   font-family: var(--cya-font-body);
   color: var(--cya-text);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6,
