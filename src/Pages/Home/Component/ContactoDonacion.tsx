@@ -32,7 +32,7 @@ export default function ContactoDonacion() {
 
     const url = urlBase.pathBase + "contacto/donacion";
     try {
-      const response = await axios.post(url, form);
+      const response = await axios.post(url, form, { timeout: 15000 });
       const { data } = response;
       if (data.code === "000") {
         setResult({ ok: true, message: data.message });
@@ -42,8 +42,10 @@ export default function ContactoDonacion() {
       }
     } catch (error: any) {
       const message =
-        error?.response?.data?.message ||
-        "No se pudo enviar tu mensaje. Intenta nuevamente.";
+        error?.code === "ECONNABORTED"
+          ? "El envío está tardando demasiado. Intenta nuevamente en unos minutos."
+          : error?.response?.data?.message ||
+            "No se pudo enviar tu mensaje. Intenta nuevamente.";
       setResult({ ok: false, message });
     } finally {
       setSending(false);
