@@ -8,14 +8,14 @@ interface props {
   perdidos: any;
 }
 
-export default function MascotasPerdidas({ perdidos }: props) {
-  // Construye la URL sin doble //, soporta espacios y backslashes
-  const buildImgUrl = (base: string, foto: string) => {
-    const cleanBase = base.replace(/\/+$/, "");
-    const cleanFoto = (foto || "").replace(/^\/+/, "").replace(/\\/g, "/");
-    return `${cleanBase}/${encodeURI(cleanFoto)}`;
-  };
+// Construye la URL sin doble //, soporta espacios y backslashes
+export function buildImgUrl(base: string, foto: string) {
+  const cleanBase = base.replace(/\/+$/, "");
+  const cleanFoto = (foto || "").replace(/^\/+/, "").replace(/\\/g, "/");
+  return `${cleanBase}/${encodeURI(cleanFoto)}`;
+}
 
+export default function MascotasPerdidas({ perdidos }: props) {
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [seleccionado, setSeleccionado] = React.useState<any>(null);
 
