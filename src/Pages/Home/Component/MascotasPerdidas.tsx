@@ -80,6 +80,7 @@ export default function MascotasPerdidas({ perdidos }: props) {
                   style={{ height: "270px", width: "100%", objectFit: "cover" }}
                   src={buildImgUrl(urlBase.pathBase, item.foto)}
                   alt={item.Nombre}
+                  loading="lazy"
                 />
                 <div className="pet-card__badge">
                   <h5>{item.Nombre}</h5>

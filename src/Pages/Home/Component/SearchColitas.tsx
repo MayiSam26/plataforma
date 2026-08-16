@@ -1,18 +1,12 @@
 
 import {
   Box,
-  Button,
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
   Select,
-  TextField,
 } from "@mui/material";
-
-interface Props {
-  grupos?: any[];
-}
 
 interface Props {
   tipoAnimal: string;
@@ -21,7 +15,6 @@ interface Props {
   handleTipoAnimal: (value: string) => void;
   handleGenero: (value: string) => void;
   handleTamano: (value: string) => void;
-  handleBuscar: () => void;
 }
 
 export default function FiltroAnimales({
@@ -31,7 +24,6 @@ export default function FiltroAnimales({
   handleTipoAnimal,
   handleGenero,
   handleTamano,
-  handleBuscar,
 }: Props) {
   return (
     <Box
@@ -99,36 +91,6 @@ export default function FiltroAnimales({
                <MenuItem value="Grande">Grande</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}></Grid>
-        <Grid
-          item
-          xs={12}
-          md={1}
-          sx={{
-            textAlign: "center",
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Box display="flex" justifyContent="space-between">
-
-            <Button
-              style={{
-                backgroundColor: "#3F9E5C",
-                color: "white",
-                borderRadius: "999px",
-                fontFamily: "Nunito, sans-serif",
-                fontWeight: 700,
-                textTransform: "capitalize",
-                fontSize: "14px",
-                width: "200px",
-              }}
-            onClick={handleBuscar}
-            >
-              Buscar
-            </Button>
-          </Box>
         </Grid>
       </Grid>
     </Box>

@@ -38,9 +38,9 @@ export default function Header() {
                 </Link>
               )
             )}
-            <a href="#adoptar" className="btn btn-primary btn-sm ml-lg-3 mt-3 mt-lg-0">
+            <Link to="/colitas" className="btn btn-primary btn-sm ml-lg-3 mt-3 mt-lg-0">
               Adoptar ahora
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
