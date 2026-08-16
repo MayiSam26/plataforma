@@ -50,9 +50,9 @@ export default function Footer() {
                   Aceptamos Yape, Plin y Paypal. Revisa los datos completos en
                   nuestra sección de donaciones.
                 </p>
-                <a href="#donar" className="btn btn-secondary btn-sm">
+                <Link to="/#donar" className="btn btn-secondary btn-sm">
                   Ver cómo donar
-                </a>
+                </Link>
               </div>
 
             </div>
