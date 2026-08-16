@@ -1,5 +1,5 @@
 import { Fragment } from "react/jsx-runtime";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Header from "./Component/Header";
 import Hero from "./Component/Hero";
 import Info from "./Component/Info";
@@ -18,10 +18,27 @@ import { Button } from "@mui/material";
 export default function Home() {
   const [plan, setPlan] = React.useState<any[]>([]);
   const [perdidosRecientes, setPerdidosRecientes] = React.useState<any[]>([]);
+  const location = useLocation();
 
   React.useEffect(() => {
     AOS.init({});
   }, []);
+
+  // Si se llega desde otra página con un enlace tipo "/#donar" (menú fijo),
+  // baja hasta esa sección una vez que el contenido ya se renderizó, dejando
+  // espacio para el header fijo.
+  React.useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace("#", "");
+    const timer = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const headerHeight = document.querySelector(".cya-header")?.clientHeight || 0;
+      const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+      window.scrollTo({ top, behavior: "smooth" });
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [location.hash]);
 
   const getPlan = async () => {
     const url = urlBase.pathBase + "plan-mensual/list";

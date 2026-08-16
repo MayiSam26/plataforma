@@ -29,9 +29,12 @@ export default function Header() {
           <div className="navbar-nav align-items-lg-center py-0">
             {dataHeader.map((item: any) =>
               item.path.startsWith("#") ? (
-                <a key={item.id} href={item.path} className="nav-item nav-link" style={{ color: "white" }}>
+                // Ancla de una sección del Home: si ya estás en "/" el navegador
+                // hace scroll solo; si estás en otra página, primero navega a
+                // "/" y Home.tsx se encarga de bajar hasta esa sección.
+                <Link key={item.id} to={"/" + item.path} className="nav-item nav-link" style={{ color: "white" }}>
                   {item.name}
-                </a>
+                </Link>
               ) : (
                 <Link key={item.id} to={item.path} className="nav-item nav-link" style={{ color: "white" }}>
                   {item.name}
