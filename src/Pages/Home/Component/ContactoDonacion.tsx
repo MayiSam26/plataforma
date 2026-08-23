@@ -27,6 +27,12 @@ export default function ContactoDonacion() {
       return;
     }
 
+    // El teléfono es opcional, pero si lo llenan debe estar completo (Perú: 9 dígitos).
+    if (form.telefono && !/^\d{9}$/.test(form.telefono)) {
+      setResult({ ok: false, message: "El teléfono debe tener 9 dígitos numéricos." });
+      return;
+    }
+
     setSending(true);
     setResult(null);
 
@@ -103,8 +109,15 @@ export default function ContactoDonacion() {
             size="small"
             fullWidth
             sx={{ mb: 2 }}
+            helperText="9 dígitos"
+            inputProps={{ maxLength: 9, inputMode: "numeric", pattern: "[0-9]*" }}
             value={form.telefono}
-            onChange={handleChange("telefono")}
+            onChange={(e) =>
+              setForm((prev) => ({
+                ...prev,
+                telefono: e.target.value.replace(/\D/g, "").slice(0, 9),
+              }))
+            }
           />
 
           <TextField

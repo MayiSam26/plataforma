@@ -58,6 +58,13 @@ export default function CardDetalleAnimal({
       return;
     }
 
+    // Perú: los números de contacto son de 9 dígitos. El campo ya solo deja
+    // escribir dígitos, esto atrapa el caso de dejarlo a medio escribir.
+    if (!/^\d{9}$/.test(form.telefono)) {
+      setResult({ ok: false, message: "El teléfono debe tener 9 dígitos numéricos." });
+      return;
+    }
+
     setSending(true);
     setResult(null);
 
@@ -310,8 +317,15 @@ export default function CardDetalleAnimal({
                 size="small"
                 fullWidth
                 required
+                helperText="9 dígitos"
+                inputProps={{ maxLength: 9, inputMode: "numeric", pattern: "[0-9]*" }}
                 value={form.telefono}
-                onChange={handleChange("telefono")}
+                onChange={(e) =>
+                  setForm((prev) => ({
+                    ...prev,
+                    telefono: e.target.value.replace(/\D/g, "").slice(0, 9),
+                  }))
+                }
               />
             </Box>
 
