@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import React from "react";
 import moment from "moment";
@@ -140,7 +141,33 @@ export default function DetailMascotaPerdida({ perdidoDetalle, setOpenModal }: a
               Instagram
             </Button>
           )}
+          {/* El número nunca llega al navegador: el servidor responde con la
+              redirección a WhatsApp, así el dato del dueño no queda expuesto
+              en la página ni en la respuesta del API. */}
+          {dueno?.tieneWhatsapp && (
+            <Button
+              variant="contained"
+              startIcon={<WhatsAppIcon />}
+              href={`${urlBase.pathBase.replace(/\/+$/, "")}/perdidos/whatsapp/${perdidoDetalle?.idmascotaperdida}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                borderRadius: "999px",
+                textTransform: "none",
+                backgroundColor: "#25D366",
+                "&:hover": { backgroundColor: "#1EBE5A" },
+              }}
+            >
+              Escribir por WhatsApp
+            </Button>
+          )}
         </Box>
+
+        {!dueno?.facebook && !dueno?.instagram && !dueno?.tieneWhatsapp && (
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            El refugio no registró un medio de contacto para esta mascota.
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
