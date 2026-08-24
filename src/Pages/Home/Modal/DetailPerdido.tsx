@@ -212,7 +212,12 @@ export default function CardDetalleAnimal({
         <Typography sx={{ mb: 1 }}>
           <strong>Edad:</strong>{" "}
           <span style={{ fontWeight: 400 }}>
-            {colitasDetalle?.Edada_Aprox} año(s)
+            {/* El servidor calcula la edad desde la fecha de nacimiento, así
+                que no envejece mal. Si no la trae, se cae al dato antiguo. */}
+            {colitasDetalle?.edad_texto ||
+              (colitasDetalle?.Edada_Aprox
+                ? `${colitasDetalle.Edada_Aprox} año(s)`
+                : "No registrada")}
           </span>
         </Typography>
 
