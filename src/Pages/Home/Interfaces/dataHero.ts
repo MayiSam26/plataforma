@@ -12,13 +12,13 @@ export const dataHero: Data[] = [
     mainheader: "Colitas & Amor",
     maintitle: "Adopta un nuevo amigo",
     mainfooter: "El amor no tiene precio, ¡adopta y cambia una vida para siempre!",
-    urlimg: "/img/portada.png",
+    urlimg: "/img/portada.jpg",
   },
   {
     id: 2,
     mainheader: "Colitas & Amor",
     maintitle: "Ayuda a un amigo",
     mainfooter: "Un hogar no está completo sin una patita peluda. ¡Adopta hoy!",
-    urlimg: "/img/portada2.png",
+    urlimg: "/img/portada2.jpg",
   },
 ];

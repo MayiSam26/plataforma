@@ -57,30 +57,23 @@
 
     <!-- ✅ Librerías CSS -->
     <link href="%PUBLIC_URL%/lib/flaticon/font/flaticon.css" rel="stylesheet" />
-    <link
-      href="%PUBLIC_URL%/lib/owlcarousel/assets/owl.carousel.min.css"
-      rel="stylesheet"
-    />
   </head>
 
   <body>
     <noscript>Necesitas habilitar JavaScript para usar esta web.</noscript>
     <div id="root"></div>
 
-    <!-- ✅ JS Librerías -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!--
+      Ya no se cargan jQuery, el paquete JS de Bootstrap, easing ni
+      owl.carousel. Lo unico que los necesitaba era el despliegue del menu,
+      que ahora se maneja con estado de React (ver Header.tsx), y un
+      js/main.js cuyas funciones apuntaban a elementos que esta aplicacion
+      nunca llega a dibujar (carruseles y boton "volver arriba" heredados de
+      la plantilla original). Eran unos 170 KB bloqueantes desde dos CDN.
 
-    <script src="%PUBLIC_URL%/lib/easing/easing.min.js"></script>
-    <script src="%PUBLIC_URL%/lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- ✅ Tu JS principal -->
-    <script src="%PUBLIC_URL%/js/main.js"></script>
-
-    <!-- ✅ Font Awesome kit (opcional, lo dejo porque lo usas) -->
-    <script
-      src="https://kit.fontawesome.com/ccf76aa2b3.js"
-      crossorigin="anonymous"
-    ></script>
+      El kit de Font Awesome tambien se quito: duplicaba la hoja de estilos de
+      Font Awesome que ya se carga arriba, y de esa libreria esta web usa
+      cuatro iconos.
+    -->
   </body>
 </html>

@@ -136,13 +136,13 @@ export default function Home() {
           <div className="col-lg-5" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
             <div className="row px-3">
               <div className="col-12 p-2">
-                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-10.png" alt="" />
+                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-10.jpg" alt="" />
               </div>
               <div className="col-6 p-2">
-                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-2.png" alt="" />
+                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-2.jpg" alt="" />
               </div>
               <div className="col-6 p-2">
-                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-3.png" alt="" />
+                <img className="img-fluid w-100 img-rounded-shadow" src="img/somos-3.jpg" alt="" />
               </div>
             </div>
           </div>
@@ -204,7 +204,7 @@ export default function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-5" data-aos="fade-up" data-aos-duration="700">
-              <img className="img-fluid w-100 img-rounded-shadow" src="img/adoptante.png" alt="" />
+              <img className="img-fluid w-100 img-rounded-shadow" src="img/adoptante.jpg" alt="" />
             </div>
             <div className="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
               <h4 className="text-secondary mb-3">¿Quiere adoptar?</h4>
