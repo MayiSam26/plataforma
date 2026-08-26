@@ -257,12 +257,12 @@ export default function Home() {
         {/* ✅ IMÁGENES RESPONSIVE EN GRID */}
         <div className="row justify-content-center text-center">
           {[
-            "/img/testimonio1.png",
-            "/img/testimonio4.png",
-            "/img/testimonio3.png",
-            "/img/testimonio2.png",
-            "/img/testimonio5.png",
-            "/img/testimonio6.png",
+            "/img/testimonio1.jpg",
+            "/img/testimonio4.jpg",
+            "/img/testimonio3.jpg",
+            "/img/testimonio2.jpg",
+            "/img/testimonio5.jpg",
+            "/img/testimonio6.jpg",
           ].map((src, idx) => (
             <div key={idx} className="col-lg-4 col-md-6 col-12 mb-4">
               <div
