@@ -4,6 +4,7 @@ import { Box, Modal } from "@mui/material";
 import urlBase from "../../../config/index";
 import DetailPerdido from "../Modal/DetailPerdido";
 import axios from "axios";
+import FotoMascota from "./FotoMascota";
 
 interface props {
   perdidosRecientes: any;
@@ -118,12 +119,11 @@ export default function Perdidos({ perdidosRecientes }: props) {
               data-aos-duration="700"
             >
               <div className="pet-card__img-wrap">
-                <img
+                <FotoMascota
                   className="card-img-top"
                   style={{ height: "270px", width: "100%", objectFit: "cover" }}
                   src={buildImgUrl(urlBase.pathBase, item.foto)}
                   alt={item.nombre}
-                  loading="lazy"
                 />
                 <div className="pet-card__badge">
                   <h5>{item.nombre}</h5>

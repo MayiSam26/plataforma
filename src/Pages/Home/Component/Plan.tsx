@@ -1,5 +1,4 @@
 import { Fragment } from "react/jsx-runtime";
-import urlBase from "../../../config/index";
 
 interface props {
   plan: any;
@@ -29,10 +28,18 @@ export default function Plan({ plan }: props) {
       {plan.map((item: any, idx: number) => {
         const { content } = item;
 
-        const contentParse =
-          urlBase.pathBase == "https://bakendultimo-production.up.railway.app"
-            ? JSON.parse(content)
-            : content;
+        // "content" deberia llegar siempre como arreglo, pero antes esto
+        // dependia de comparar la direccion del backend, y si el dato venia
+        // como texto la portada entera se caia con "content.map no es una
+        // funcion". Ahora se acepta cualquiera de las dos formas y, ante la
+        // duda, se muestra la tarjeta sin datos en vez de romper la pagina.
+        let contentParse: any[] = [];
+        try {
+          const crudo = typeof content === "string" ? JSON.parse(content) : content;
+          contentParse = Array.isArray(crudo) ? crudo : [];
+        } catch {
+          contentParse = [];
+        }
 
         return (
           <div className="col-lg-4 mb-4" key={item.idplanmensual}>

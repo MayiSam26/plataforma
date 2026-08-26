@@ -3,6 +3,7 @@ import React from "react";
 import { Box, Modal } from "@mui/material";
 import urlBase from "../../../config/index";
 import DetailMascotaPerdida from "../Modal/DetailMascotaPerdida";
+import FotoMascota from "./FotoMascota";
 
 interface props {
   perdidos: any;
@@ -75,12 +76,11 @@ export default function MascotasPerdidas({ perdidos }: props) {
               data-aos-duration="700"
             >
               <div className="pet-card__img-wrap">
-                <img
+                <FotoMascota
                   className="card-img-top"
                   style={{ height: "270px", width: "100%", objectFit: "cover" }}
                   src={buildImgUrl(urlBase.pathBase, item.foto)}
                   alt={item.Nombre}
-                  loading="lazy"
                 />
                 <div className="pet-card__badge">
                   <h5>{item.Nombre}</h5>
