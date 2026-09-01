@@ -27,8 +27,13 @@ const initialForm = {
   Dni: "",
   Direccion: "",
   telefono: "",
+  correo: "",
   Motivo: "",
 };
+
+// Laxo a proposito: la regla estricta del estandar rechaza correos que en la
+// practica funcionan. Alcanza con descartar lo que claramente no lo es.
+const CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export default function CardDetalleAnimal({
   colitasDetalle,
@@ -62,6 +67,13 @@ export default function CardDetalleAnimal({
     // escribir dígitos, esto atrapa el caso de dejarlo a medio escribir.
     if (!/^\d{9}$/.test(form.telefono)) {
       setResult({ ok: false, message: "El teléfono debe tener 9 dígitos numéricos." });
+      return;
+    }
+
+    // El correo es opcional, pero si lo escriben mal el refugio se queda sin
+    // como responder y la persona nunca se entera.
+    if (form.correo && !CORREO.test(form.correo)) {
+      setResult({ ok: false, message: "Revisa tu correo electrónico: el formato no es válido." });
       return;
     }
 
@@ -342,6 +354,17 @@ export default function CardDetalleAnimal({
               sx={{ mb: 2 }}
               value={form.Direccion}
               onChange={handleChange("Direccion")}
+            />
+
+            <TextField
+              label="Correo electrónico (opcional)"
+              type="email"
+              size="small"
+              fullWidth
+              sx={{ mb: 2 }}
+              value={form.correo}
+              helperText="Por aquí te escribiremos sobre tu solicitud"
+              onChange={handleChange("correo")}
             />
 
             <TextField
