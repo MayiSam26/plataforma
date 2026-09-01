@@ -102,9 +102,13 @@ export default function CardDetalleAnimal({
       return;
     }
 
-    // El correo es opcional, pero si lo escriben mal el refugio se queda sin
-    // como responder y la persona nunca se entera.
-    if (form.correo && !CORREO.test(form.correo)) {
+    // El correo quedo obligatorio: es el canal por el que se responde la
+    // solicitud y por el que despues se hace el seguimiento de la adopcion.
+    if (!form.correo.trim()) {
+      setResult({ ok: false, message: "Ingresa tu correo electrónico." });
+      return;
+    }
+    if (!CORREO.test(form.correo)) {
       setResult({ ok: false, message: "Revisa tu correo electrónico: el formato no es válido." });
       return;
     }
@@ -415,13 +419,19 @@ export default function CardDetalleAnimal({
             />
 
             <TextField
-              label="Correo electrónico (opcional)"
+              label="Correo electrónico"
               type="email"
               size="small"
               fullWidth
+              required
               sx={{ mb: 2 }}
               value={form.correo}
-              helperText="Por aquí te escribiremos sobre tu solicitud"
+              error={!!form.correo && !CORREO.test(form.correo)}
+              helperText={
+                form.correo && !CORREO.test(form.correo)
+                  ? "Revisa el formato: nombre@dominio.com"
+                  : "Por aquí te escribiremos sobre tu solicitud"
+              }
               onChange={handleChange("correo")}
             />
 
