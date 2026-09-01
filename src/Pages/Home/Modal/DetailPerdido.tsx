@@ -28,12 +28,27 @@ const initialForm = {
   Direccion: "",
   telefono: "",
   correo: "",
+  fecha_nacimiento: "",
   Motivo: "",
 };
+
+// El contrato de adopcion lo firma un adulto, asi que un menor no deberia
+// llegar a postular. Se pide la fecha y no la edad: una edad escrita a mano
+// nace correcta y se vuelve falsa sola con el tiempo, y una fecha ademas se
+// puede contrastar con el DNI al momento de la entrega.
+const EDAD_MINIMA = 18;
 
 // Laxo a proposito: la regla estricta del estandar rechaza correos que en la
 // practica funcionan. Alcanza con descartar lo que claramente no lo es.
 const CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/** Anios cumplidos hoy, o null si la fecha esta vacia, mal escrita o en el futuro. */
+function edadDe(fecha: string): number | null {
+  if (!fecha) return null;
+  const nacimiento = moment(fecha, "YYYY-MM-DD", true);
+  if (!nacimiento.isValid() || nacimiento.isAfter(moment())) return null;
+  return moment().diff(nacimiento, "years");
+}
 
 export default function CardDetalleAnimal({
   colitasDetalle,
@@ -44,6 +59,10 @@ export default function CardDetalleAnimal({
   const [form, setForm] = React.useState(initialForm);
   const [sending, setSending] = React.useState(false);
   const [result, setResult] = React.useState<{ ok: boolean; message: string } | null>(null);
+
+  // Se muestra bajo el campo mientras escribe, para que se entere antes de
+  // llenar todo lo demas y recien ahi recibir un rechazo.
+  const edadActual = edadDe(form.fecha_nacimiento);
 
   const buildImgUrl = (base: string, foto: string) => {
     const cleanBase = base.replace(/\/+$/, "");
@@ -67,6 +86,19 @@ export default function CardDetalleAnimal({
     // escribir dígitos, esto atrapa el caso de dejarlo a medio escribir.
     if (!/^\d{9}$/.test(form.telefono)) {
       setResult({ ok: false, message: "El teléfono debe tener 9 dígitos numéricos." });
+      return;
+    }
+
+    const edad = edadDe(form.fecha_nacimiento);
+    if (edad === null) {
+      setResult({ ok: false, message: "Ingresa tu fecha de nacimiento." });
+      return;
+    }
+    if (edad < EDAD_MINIMA) {
+      setResult({
+        ok: false,
+        message: `Debes ser mayor de ${EDAD_MINIMA} años para solicitar una adopción, porque el contrato lo firma un adulto. Puedes postular con el apoyo de tu padre, madre o apoderado.`,
+      });
       return;
     }
 
@@ -346,14 +378,40 @@ export default function CardDetalleAnimal({
               />
             </Box>
 
+            {/* Se llamaba solo "Direccion" y alguien termino escribiendo ahi su
+                correo electronico. El rotulo dice domicilio y el ejemplo
+                muestra que se espera una calle. */}
             <TextField
-              label="Dirección"
+              label="Domicilio (dónde vives)"
               size="small"
               fullWidth
               required
               sx={{ mb: 2 }}
               value={form.Direccion}
+              placeholder="Ej.: Jr. Loreto 480, Urb. San José, Bellavista"
+              helperText="Calle, número y distrito"
               onChange={handleChange("Direccion")}
+            />
+
+            <TextField
+              label="Fecha de nacimiento"
+              type="date"
+              size="small"
+              fullWidth
+              required
+              sx={{ mb: 2 }}
+              InputLabelProps={{ shrink: true }}
+              inputProps={{ max: moment().format("YYYY-MM-DD") }}
+              value={form.fecha_nacimiento}
+              error={edadActual !== null && edadActual < EDAD_MINIMA}
+              helperText={
+                edadActual === null
+                  ? "Debes ser mayor de edad para adoptar"
+                  : edadActual < EDAD_MINIMA
+                  ? `Tienes ${edadActual} años: la adopción la debe solicitar un adulto`
+                  : `${edadActual} años`
+              }
+              onChange={handleChange("fecha_nacimiento")}
             />
 
             <TextField
